@@ -22,10 +22,14 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.diamond = new MyDiamond(this);
+        this.triangle = new MyTriangle(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 1;
+
+        this.displayTriangle = false;   // starting the shapes as false
+        this.displayDiamond = false;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -57,6 +61,7 @@ class MyScene extends CGFscene {
         if (this.displayAxis)
             this.axis.display();
 
+
         this.setDefaultAppearance();
 
         var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
@@ -68,7 +73,11 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        this.diamond.display();
+        if (this.displayTriangle)
+            this.triangle.display();
+
+        if (this.displayDiamond)
+            this.diamond.display();
 
         // ---- END Primitive drawing section
     }
