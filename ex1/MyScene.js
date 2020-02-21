@@ -23,6 +23,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.diamond = new MyDiamond(this);
         this.triangle = new MyTriangle(this);
+        this.parallelogram = new MyParallelogram(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -30,6 +31,7 @@ class MyScene extends CGFscene {
 
         this.displayTriangle = false;   // starting the shapes as false
         this.displayDiamond = false;
+        this.displayParallelogram = false;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -78,6 +80,9 @@ class MyScene extends CGFscene {
 
         if (this.displayDiamond)
             this.diamond.display();
+
+        if (this.displayParallelogram)
+            this.parallelogram.display();
 
         // ---- END Primitive drawing section
     }
