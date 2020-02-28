@@ -22,10 +22,12 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.tangram = new MyTangram(this);
+        this.unitCube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayTangram = true;
+        this.displayTangram = false;
+        this.displayUnitCube = false;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -67,6 +69,9 @@ class MyScene extends CGFscene {
 
         if (this.displayTangram)
             this.tangram.display();
+
+        if (this.displayUnitCube)
+            this.unitCube.display();
 
         this.setDefaultAppearance();
 
