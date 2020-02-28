@@ -78,31 +78,17 @@ class MyScene extends CGFscene {
                     0.0, 0.0, 1.0, 0.0,
                     2.5, 1.5, 0.0, 1.0];
 
+        this.pushMatrix();
         this.multMatrix(sca);
         this.multMatrix(tra);
         this.setDiffuse(0,1,0,0);
         this.diamond.display();
-        popMatrix();
+        this.popMatrix();
 
         // Triangle
-        pushMatrix();
-        this.translate(-1.5,-0.5,0);
+        this.translate(1,1,0);
         this.rotate(-90.0*Math.PI/180.0, 0,0,1);
         this.setDiffuse(0,0,1,0);
         this.triangle.display();
-        //this.popMatrix();
-
-        // ---- BEGIN Primitive drawing section
-        /*if (this.displayDiamond)
-            this.diamond.display();
-        if (this.displayTriangle)
-            this.triangle.display();*/
-        /*if (this.displayParallelogram)
-            this.parallelogram.display();
-        if (this.displayTriangleSmall)
-            this.smallTriangle.display();
-        if (this.displayTriangleBig)
-            this.bigTriangle.display();*/
-        // ---- END Primitive drawing section
     }
 }
