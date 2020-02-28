@@ -21,19 +21,11 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.diamond = new MyDiamond(this);
-        this.triangle = new MyTriangle(this);
-        /*this.parallelogram = new MyParallelogram(this);
-        this.smallTriangle = new MyTriangleSmall(this);
-        this.bigTriangle = new MyTriangleBig(this);*/
+        this.tangram = new MyTangram(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayDiamond = true;
-        this.displayTriangle = true;
-        /*this.displayParallelogram = true;
-        this.displayTriangleSmall = true;
-        this.displayTriangleBig = true;*/
+        this.displayTangram = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -61,34 +53,22 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
+
+        var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
+            0.0, this.scaleFactor, 0.0, 0.0,
+            0.0, 0.0, this.scaleFactor, 0.0,
+            0.0, 0.0, 0.0, 1.0];
+
+        this.multMatrix(sca);
         
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
 
+        if (this.displayTangram)
+            this.tangram.display();
+
         this.setDefaultAppearance();
 
-        var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
-                    0.0, this.scaleFactor, 0.0, 0.0,
-                    0.0, 0.0, this.scaleFactor, 0.0,
-                    0.0, 0.0, 0.0, 1.0];
-
-        var tra =  [1.0, 0.0, 0.0, 0.0,
-                    0.0, 1.0, 0.0, 0.0,
-                    0.0, 0.0, 1.0, 0.0,
-                    2.5, 1.5, 0.0, 1.0];
-
-        this.pushMatrix();
-        this.multMatrix(sca);
-        this.multMatrix(tra);
-        this.setDiffuse(0,1,0,0);
-        this.diamond.display();
-        this.popMatrix();
-
-        // Triangle
-        this.translate(1,1,0);
-        this.rotate(-90.0*Math.PI/180.0, 0,0,1);
-        this.setDiffuse(0,0,1,0);
-        this.triangle.display();
     }
 }
