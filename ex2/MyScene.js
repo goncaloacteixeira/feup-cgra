@@ -22,14 +22,17 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.tangram = new MyTangram(this);
-        this.unitCube = new MyUnitCube(this);
+        this.unitCube1 = new MyUnitCube(this);
+        this.unitCube2 = new MyUnitCubeQuad(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
 
-        this.displayUnitCube = false;
+        this.displayUnitCube1 = false;
+        this.displayUnitCube2 = false;
         this.displayTangram = false;
-        this.displayBase = false;
+        this.displayBase1 = false;
+        this.displayBase2 = false;
 
         this.scaleFactor = 1;
     }
@@ -72,22 +75,43 @@ class MyScene extends CGFscene {
             this.axis.display();
 
 
-        if (this.displayUnitCube) {
-            this.unitCube.display();
+        if (this.displayUnitCube1) {
+            this.unitCube1.display();
+        }
+
+        if (this.displayUnitCube2) {
+            this.unitCube2.display();
         }
 
         if (this.displayTangram) {
             this.tangram.display();
         }
 
-        if (this.displayBase) {
+        if (this.displayBase1) {
             const factor = 9;
             this.translate(factor/2.0, -factor/2.0, factor/2.0);
 
             this.pushMatrix();
             this.setDiffuse(0.5,0.2, 0);
             this.scale(factor, factor, factor);
-            this.unitCube.display();
+            this.unitCube1.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(0,factor/2.0+0.01,0);
+            this.rotate(-90.0*Math.PI/180.0, 1, 0, 0);
+            this.tangram.display();
+            this.popMatrix();
+        }
+
+        if (this.displayBase2) {
+            const factor = 9;
+            this.translate(factor/2.0, -factor/2.0, factor/2.0);
+
+            this.pushMatrix();
+            this.setDiffuse(0.8,0.3, 1);
+            this.scale(factor, factor, factor);
+            this.unitCube2.display();
             this.popMatrix();
 
             this.pushMatrix();
