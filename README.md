@@ -1,5 +1,6 @@
 # feup-cgra
 Computer Graphics Curricular Unit - 2019/2020
 
-- [Exercício 1](https://skdgt.github.io/feup-cgra/ex1)
-- [Exercício 2](https://skdgt.github.io/feup-cgra/ex2)
+<a href="https://skdgt.github.io/feup-cgra/ex1" target="_blank">Exercício 1</a>
+
+<a href="https://skdgt.github.io/feup-cgra/ex2" target="_blank">Exercício 2</a>
