@@ -52,7 +52,6 @@ class MyChair extends CGFobject {
         this.scene.scale(0.3,0.53,0.3);
         this.fleg1.display();
         this.scene.popMatrix();
-
     }
 }
 
