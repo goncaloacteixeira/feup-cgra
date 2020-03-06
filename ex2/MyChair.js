@@ -21,7 +21,7 @@ class MyChair extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(-2.5, 3.5, 0);
+        this.scene.translate(-2.47, 3.49, 0);
         this.scene.rotate(90.0*Math.PI/180.0, 0,0,1);
         this.scene.scale(2.5,0.1,5);
         this.chairback.display();
@@ -42,13 +42,13 @@ class MyChair extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(2.3, -2.65, 2.35);
+        this.scene.translate(2.3, -2.65, 2.3);
         this.scene.scale(0.3,0.53,0.3);
         this.fleg1.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(2.3, -2.65, -2.35);
+        this.scene.translate(2.3, -2.65, -2.3);
         this.scene.scale(0.3,0.53,0.3);
         this.fleg1.display();
         this.scene.popMatrix();
