@@ -25,6 +25,8 @@ class MyScene extends CGFscene {
         this.unitCube1 = new MyUnitCube(this);
         this.unitCube2 = new MyUnitCubeQuad(this);
 
+        this.table = new MyTable(this);
+
         //Objects connected to MyInterface
         this.displayAxis = true;
 
@@ -33,6 +35,8 @@ class MyScene extends CGFscene {
         this.displayTangram = false;
         this.displayBase1 = false;
         this.displayBase2 = false;
+
+        this.displayTable = false;
 
         this.scaleFactor = 1;
     }
@@ -119,6 +123,10 @@ class MyScene extends CGFscene {
             this.rotate(-90.0*Math.PI/180.0, 1, 0, 0);
             this.tangram.display();
             this.popMatrix();
+        }
+
+        if (this.displayTable) {
+            this.table.display();
         }
 
         this.setDefaultAppearance();
