@@ -38,7 +38,8 @@ class MyScene extends CGFscene {
         this.displayBase2 = false;
 
         this.displayTable = false;
-        this.displayChair = true;
+        this.displayChair = false;
+        this.displayTableChair = false;
 
         this.scaleFactor = 1;
     }
@@ -133,6 +134,44 @@ class MyScene extends CGFscene {
 
         if (this.displayChair) {
             this.chair.display();
+        }
+
+        if (this.displayTableChair) {
+            this.table.display();
+            this.pushMatrix();
+            this.translate(-10,1.8,0);
+            this.chair.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(10,1.8,0);
+            this.rotate(Math.PI, 0, 1, 0);
+            this.chair.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(-3.5,1.8,5);
+            this.rotate(Math.PI/2.0, 0, 1, 0);
+            this.chair.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(3.5,1.8,5);
+            this.rotate(Math.PI/2.0, 0, 1, 0);
+            this.chair.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(-3.5,1.8,-5);
+            this.rotate(-Math.PI/2.0, 0, 1, 0);
+            this.chair.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(3.5,1.8,-5);
+            this.rotate(-Math.PI/2.0, 0, 1, 0);
+            this.chair.display();
+            this.popMatrix();
         }
 
         this.setDefaultAppearance();
