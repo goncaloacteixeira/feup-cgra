@@ -14,6 +14,7 @@ class MyChair extends CGFobject {
 
     }
     display() {
+        this.scene.setDiffuse(0.76,0.60,0.42);
         this.scene.pushMatrix();
         this.scene.scale(5,0.1,5);
         this.seat.display();
@@ -26,6 +27,8 @@ class MyChair extends CGFobject {
         this.chairback.display();
         this.scene.popMatrix();
 
+
+        this.scene.setDiffuse(48/255, 31/255, 13/255);
         this.scene.pushMatrix();
         this.scene.translate(-2.4, -0.25, 2.4);
         this.scene.scale(0.3,1,0.3);
