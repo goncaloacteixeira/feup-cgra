@@ -24,6 +24,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayBase1').name('Base 1');
         this.gui.add(this.scene, 'displayBase2').name('Base 2');
 
+        this.gui.add(this.scene, 'displayChair').name('Chair');
         this.gui.add(this.scene, 'displayTable').name('Table');
 
         //Slider element in GUI

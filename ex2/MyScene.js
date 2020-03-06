@@ -26,6 +26,7 @@ class MyScene extends CGFscene {
         this.unitCube2 = new MyUnitCubeQuad(this);
 
         this.table = new MyTable(this);
+        this.chair = new MyChair(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -37,6 +38,7 @@ class MyScene extends CGFscene {
         this.displayBase2 = false;
 
         this.displayTable = false;
+        this.displayChair = true;
 
         this.scaleFactor = 1;
     }
@@ -127,6 +129,10 @@ class MyScene extends CGFscene {
 
         if (this.displayTable) {
             this.table.display();
+        }
+
+        if (this.displayChair) {
+            this.chair.display();
         }
 
         this.setDefaultAppearance();
