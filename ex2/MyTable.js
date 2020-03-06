@@ -17,16 +17,32 @@ class MyTable extends CGFobject {
     display() {
         this.scene.pushMatrix();
         this.scene.translate(0,3.5,0);
-        this.scene.scale(20,0.2,10);
+        this.scene.scale(20,0.6,10);
         this.top1.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
+        this.scene.translate(9,0,-4);
+        this.scene.scale(1,0.7,1);
         this.leg1.display();
         this.scene.popMatrix();
 
+        this.scene.pushMatrix();
+        this.scene.translate(-9,0,4);
+        this.scene.scale(1,0.7,1);
+        this.leg2.display();
+        this.scene.popMatrix();
 
+        this.scene.pushMatrix();
+        this.scene.translate(-9,0,-4);
+        this.scene.scale(1,0.7,1);
+        this.leg3.display();
+        this.scene.popMatrix();
 
+        this.scene.pushMatrix();
+        this.scene.translate(9,0,4);
+        this.scene.scale(1,0.7,1);
+        this.leg4.display();
+        this.scene.popMatrix();
     }
-
 }
