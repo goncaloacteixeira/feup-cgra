@@ -117,10 +117,10 @@ class MyScene extends CGFscene {
         this.material2.setDiffuse(1, 0, 0, 1.0);
         this.material2.setSpecular(0, 0, 0, 1.0);
         this.material2.setShininess(10.0);
-        o ambient, no diffuse)
+
+        // Red Specular (no ambient, no diffuse)
         this.material3 = new CGFappearance(this);
-        this.material3.setAm
-        // Red Specular (nbient(0, 0, 0, 1.0);
+        this.material3.setAmbient(0, 0, 0, 1.0);
         this.material3.setDiffuse(0, 0, 0, 1.0);
         this.material3.setSpecular(1, 0, 0, 1.0);
         this.material3.setShininess(10.0);
