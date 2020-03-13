@@ -93,7 +93,7 @@ class MyScene extends CGFscene {
         this.customMaterial.setAmbient(...this.hexToRgbA(this.customMaterialValues['Ambient']));
         this.customMaterial.setDiffuse(...this.hexToRgbA(this.customMaterialValues['Diffuse']));
         this.customMaterial.setSpecular(...this.hexToRgbA(this.customMaterialValues['Specular']));
-
+        
         this.customMaterial.setShininess(this.customMaterialValues['Shininess']);
 
     };
@@ -117,14 +117,20 @@ class MyScene extends CGFscene {
         this.material2.setDiffuse(1, 0, 0, 1.0);
         this.material2.setSpecular(0, 0, 0, 1.0);
         this.material2.setShininess(10.0);
-
-        // Red Specular (no ambient, no diffuse)
+        o ambient, no diffuse)
         this.material3 = new CGFappearance(this);
-        this.material3.setAmbient(0, 0, 0, 1.0);
+        this.material3.setAm
+        // Red Specular (nbient(0, 0, 0, 1.0);
         this.material3.setDiffuse(0, 0, 0, 1.0);
         this.material3.setSpecular(1, 0, 0, 1.0);
         this.material3.setShininess(10.0);
 
+        //Madeira
+        this.material4 = new CGFappearance(this);
+        this.material4.setAmbient(0.0, 0.0, 0.0, 1.0);
+        this.material4.setDiffuse(0.76,0.60,0.42, 1.0);
+        this.material4.setSpecular(0.05, 0.05, 0.05, 1.0);
+        this.material4.setShininess(5.0);
         // Custom material (can be changed in the interface)
         // initially midrange values on ambient, diffuse and specular, on R, G and B respectively
 
@@ -138,10 +144,10 @@ class MyScene extends CGFscene {
 
         this.updateCustomMaterial();
 
-        this.materials = [this.material1, this.material2, this.material3, this.customMaterial];
+        this.materials = [this.material1, this.material2, this.material3, this.material4, this.customMaterial];
 
         // Labels and ID's for object selection on MyInterface
-        this.materialIDs = {'Red Ambient': 0, 'Red Diffuse': 1, 'Red Specular': 2, 'Custom': 3 };
+        this.materialIDs = {'Red Ambient': 0, 'Red Diffuse': 1, 'Red Specular': 2, 'Timber': 3, 'Custom': 4 };
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
