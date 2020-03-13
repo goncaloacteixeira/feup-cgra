@@ -15,7 +15,14 @@ class MyParallelogram extends CGFobject {
             1,  0,  0,
             2,  1,  0,
             2,  0,  0,
-            3,  1,  0
+            3,  1,  0,
+
+            0,  0,  0,
+            1,  1,  0,
+            1,  0,  0,
+            2,  1,  0,
+            2,  0,  0,
+            3,  1,  0,
         ];
 
         //Counter-clockwise reference of vertices
@@ -32,6 +39,22 @@ class MyParallelogram extends CGFobject {
 
             3, 4, 5,
             5, 4, 3
+        ];
+
+        this.normals = [
+            0,0,1,
+            0,0,1,
+            0,0,1,
+            0,0,1,
+            0,0,1,
+            0,0,1,
+
+            0,0,-1,
+            0,0,-1,
+            0,0,-1,
+            0,0,-1,
+            0,0,-1,
+            0,0,-1,
         ];
 
         //The defined indices (and corresponding vertices)
