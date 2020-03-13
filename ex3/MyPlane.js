@@ -29,9 +29,12 @@ class MyPlane extends CGFobject {
         // Generate vertices
         this.vertices = [];
         var xCoord = -0.5;
+        // percorre linhas orientadas no sentido dos yy
         for (var i = 0; i <= this.nDivs; i++) {
+            // adiciona vertices na linha yy
             this.vertices.push(xCoord, 0.5, 0);
             this.vertices.push(xCoord, 0.5 - this.patchLength, 0);
+            // move a linha yy no sentido xx
             xCoord += this.patchLength;
         }
 
