@@ -21,52 +21,52 @@ class MyTangram extends CGFobject {
     initMaterials(scene){
         // Green color
         this.green = new CGFappearance(scene);
-        this.green.setAmbient(0.0, 0.0, 0.0, 1.0);
-        this.green.setDiffuse(0,1,0,1);
-        this.green.setSpecular(0,1,0, 1.0);
-        this.green.setShininess(0);
+        this.green.setAmbient(0.1,0.1,0.1,1.0);
+        this.green.setDiffuse(0,1,0,1.0);
+        this.green.setSpecular(1,1,1,1.0);
+        this.green.setShininess(10.0);
 
         // Blue color
         this.blue = new CGFappearance(scene);
-        this.blue.setAmbient(0.0, 0.0, 0.0, 1.0);
-        this.blue.setDiffuse(0,0,1,1);
-        this.blue.setSpecular(0,0,1, 1.0);
-        this.blue.setShininess(0);
+        this.blue.setAmbient(0.1,0.1,0.1,1.0);
+        this.blue.setDiffuse(0,0.749*0.7,1*0.7,1.0);
+        this.blue.setSpecular(1,1,1,1.0);
+        this.blue.setShininess(10.0);
 
         // Pink color
         this.pink = new CGFappearance(scene);
-        this.pink.setAmbient(0.0, 0.0, 0.0, 1.0);
-        this.pink.setDiffuse(1, 102/255, 204/255,1);
-        this.pink.setSpecular(1, 102/255, 204/255, 1.0);
-        this.pink.setShininess(0);
+        this.pink.setAmbient(0.1,0.1,0.1,1.0);
+        this.pink.setDiffuse(1*0.7,0.714*0.7,0.757*0.7,1.0);
+        this.pink.setSpecular(1,1,1,0);
+        this.pink.setShininess(10.0);
 
         // orange color
         this.orange = new CGFappearance(scene);
-        this.orange.setAmbient(0.0, 0.0, 0.0, 1.0);
-        this.orange.setDiffuse(1, 128/255, 0, 1);
-        this.orange.setSpecular(1, 128/255, 0, 1.0);
-        this.orange.setShininess(0);
+        this.orange.setAmbient(0.1,0.1,0.1,1.0);
+        this.orange.setDiffuse(1*0.7,0.647*0.7,0,1.0);
+        this.orange.setSpecular(1,1,1,0);
+        this.orange.setShininess(10.0);
 
         // yellow color
         this.yellow = new CGFappearance(scene);
-        this.yellow.setAmbient(0.0, 0.0, 0.0, 1.0);
-        this.yellow.setDiffuse(1, 1, 0, 1);
-        this.yellow.setSpecular(1, 1, 0, 1.0);
-        this.yellow.setShininess(0);
+        this.yellow.setAmbient(0.1,0.1,0.1,1.0);
+        this.yellow.setDiffuse(1*0.7,1*0.7,0,1.0);
+        this.yellow.setSpecular(1,1,1,0);
+        this.yellow.setShininess(10.0);
 
         // red color
         this.red = new CGFappearance(scene);
-        this.red.setAmbient(0.0, 0.0, 0.0, 1.0);
-        this.red.setDiffuse(1, 0, 0, 1);
-        this.red.setSpecular(1, 0, 0, 1.0);
-        this.red.setShininess(0);
+        this.red.setAmbient(0.1,0.1,0.1,1.0);
+        this.red.setDiffuse(1*0.7,0,0,1.0);
+        this.red.setSpecular(1,1,1,0);
+        this.red.setShininess(10.0);
 
         // purple color
         this.purple = new CGFappearance(scene);
-        this.purple.setAmbient(0.0, 0.0, 0.0, 1.0);
-        this.purple.setDiffuse(204/255, 0, 204/255, 1);
-        this.purple.setSpecular(204/255, 0, 204/255, 1.0);
-        this.purple.setShininess(0);
+        this.purple.setAmbient(0.1,0.1,0.1,1.0);
+        this.purple.setDiffuse(0.58*0.7,0,0.827*0.7,1.0);
+        this.purple.setSpecular(1,1,1,1.0);
+        this.purple.setShininess(10.0);
     }
 
     display() {

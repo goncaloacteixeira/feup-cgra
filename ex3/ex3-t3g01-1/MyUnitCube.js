@@ -36,8 +36,6 @@ class MyUnitCube extends CGFobject {
             0.5, -0.5, -0.5,    //F 5
             -0.5, 0.5, -0.5,    //G 6
             -0.5, -0.5, -0.5,   //H 7
-
-            //0.5, 0, 0
         ];
 
         //Counter-clockwise reference of vertices
@@ -68,8 +66,8 @@ class MyUnitCube extends CGFobject {
         ];
 
         this.normals = [
-            0, 0, 1,
-            0, 0, 1,
+            -1, 0, 0,
+            -1, 0, 0,
             1, 0, 0,
             1, 0, 0,
             1, 0, 0,
@@ -86,16 +84,14 @@ class MyUnitCube extends CGFobject {
             0, 1, 0,
             0, -1, 0,
 
-            -1, 0, 0,
-            -1, 0, 0,
+            0, 0, 1,
+            0, 0, 1,
             0, 0, 1,
             0, 0, 1,
             0, 0, -1,
             0, 0, -1,
             0, 0, -1,
             0, 0, -1,
-
-            //1,0,0
         ];
 
         //The defined indices (and corresponding vertices)
