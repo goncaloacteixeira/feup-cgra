@@ -20,7 +20,7 @@ class MyTangram extends CGFobject {
 
     initMaterials(scene){
         // Tangram texture
-        this.tangramTex = new CGFappearance(scene);
+        this.tangramTex = new CGFappearance(this.scene);
         this.tangramTex.setAmbient(0.1, 0.1, 0.1, 1);
         this.tangramTex.setDiffuse(0.9, 0.9, 0.9, 1);
         this.tangramTex.setSpecular(0.1, 0.1, 0.1, 1);
@@ -29,49 +29,49 @@ class MyTangram extends CGFobject {
         this.tangramTex.setTextureWrap('REPEAT', 'REPEAT');
 
         // Green color
-        this.green = new CGFappearance(scene);
+        this.green = new CGFappearance(this.scene);
         this.green.setAmbient(0.1,0.1,0.1,1.0);
         this.green.setDiffuse(0,1,0,1.0);
         this.green.setSpecular(1,1,1,1.0);
         this.green.setShininess(10.0);
         
         // Blue color
-        this.blue = new CGFappearance(scene);
+        this.blue = new CGFappearance(this.scene);
         this.blue.setAmbient(0.1,0.1,0.1,1.0);
         this.blue.setDiffuse(0,0.749*0.7,1*0.7,1.0);
         this.blue.setSpecular(1,1,1,1.0);
         this.blue.setShininess(10.0);
 
         // Pink color
-        this.pink = new CGFappearance(scene);
+        this.pink = new CGFappearance(this.scene);
         this.pink.setAmbient(0.1,0.1,0.1,1.0);
         this.pink.setDiffuse(1*0.7,0.714*0.7,0.757*0.7,1.0);
         this.pink.setSpecular(1,1,1,0);
         this.pink.setShininess(10.0);
 
         // orange color
-        this.orange = new CGFappearance(scene);
+        this.orange = new CGFappearance(this.scene);
         this.orange.setAmbient(0.1,0.1,0.1,1.0);
         this.orange.setDiffuse(1*0.7,0.647*0.7,0,1.0);
         this.orange.setSpecular(1,1,1,0);
         this.orange.setShininess(10.0);
 
         // yellow color
-        this.yellow = new CGFappearance(scene);
+        this.yellow = new CGFappearance(this.scene);
         this.yellow.setAmbient(0.1,0.1,0.1,1.0);
         this.yellow.setDiffuse(1*0.7,1*0.7,0,1.0);
         this.yellow.setSpecular(1,1,1,0);
         this.yellow.setShininess(10.0);
 
         // red color
-        this.red = new CGFappearance(scene);
+        this.red = new CGFappearance(this.scene);
         this.red.setAmbient(0.1,0.1,0.1,1.0);
         this.red.setDiffuse(1*0.7,0,0,1.0);
         this.red.setSpecular(1,1,1,0);
         this.red.setShininess(10.0);
 
         // purple color
-        this.purple = new CGFappearance(scene);
+        this.purple = new CGFappearance(this.scene);
         this.purple.setAmbient(0.1,0.1,0.1,1.0);
         this.purple.setDiffuse(0.58*0.7,0,0.827*0.7,1.0);
         this.purple.setSpecular(1,1,1,1.0);
