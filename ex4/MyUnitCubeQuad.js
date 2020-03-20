@@ -6,9 +6,10 @@
 class MyUnitCubeQuad extends CGFobject {
     constructor(scene) {
         super(scene);
-        this.initMaterials();
 
         this.face1 = new MyQuad(this.scene);
+        this.initMaterials();
+
     }
     
     initMaterials(){
@@ -38,6 +39,13 @@ class MyUnitCubeQuad extends CGFobject {
     }
     
     display() {
+
+        if (this.scene.linear)
+            this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+        else
+            this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.LINEAR);
+
+
         this.scene.pushMatrix();
         this.scene.translate(0,0,0.5);
         this.sideTex.apply();
@@ -47,21 +55,18 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.pushMatrix();
         this.scene.rotate(180.0*Math.PI/180.0,0,1,0);
         this.scene.translate(0,0,0.5);
-        this.sideTex.apply();
         this.face1.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0.5,0,0);
         this.scene.rotate(90.0*Math.PI/180.0,0,1,0);
-        this.sideTex.apply();
         this.face1.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(-0.5,0,0);
         this.scene.rotate(-90.0*Math.PI/180.0,0,1,0);
-        this.sideTex.apply();
         this.face1.display();
         this.scene.popMatrix();
 
