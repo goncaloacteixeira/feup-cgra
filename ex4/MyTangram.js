@@ -10,11 +10,11 @@ class MyTangram extends CGFobject {
 
         this.greenSquare = new MyDiamond(this.scene);
         this.yellowParallelogram = new MyParallelogram(this.scene);
-        this.orangeTriangle = new MyTriangleBig(this.scene);
-        this.blueTriangle = new MyTriangleBig(this.scene);
+        this.orangeTriangle = new MyTriangleBig(this.scene, 'orange');
+        this.blueTriangle = new MyTriangleBig(this.scene, 'blue');
         this.pinkTriangle = new MyTriangle(this.scene);
-        this.purpleTriangle = new MyTriangleSmall(this.scene, 0);
-        this.redTriangle = new MyTriangleSmall(this.scene, 1);
+        this.purpleTriangle = new MyTriangleSmall(this.scene, 'purple');
+        this.redTriangle = new MyTriangleSmall(this.scene, 'red');
 
     }
 
@@ -28,54 +28,6 @@ class MyTangram extends CGFobject {
         this.tangramTex.loadTexture('images/tangram.png');
         this.tangramTex.setTextureWrap('REPEAT', 'REPEAT');
 
-        // Green color
-        this.green = new CGFappearance(this.scene);
-        this.green.setAmbient(0.1,0.1,0.1,1.0);
-        this.green.setDiffuse(0,1,0,1.0);
-        this.green.setSpecular(1,1,1,1.0);
-        this.green.setShininess(10.0);
-        
-        // Blue color
-        this.blue = new CGFappearance(this.scene);
-        this.blue.setAmbient(0.1,0.1,0.1,1.0);
-        this.blue.setDiffuse(0,0.749*0.7,1*0.7,1.0);
-        this.blue.setSpecular(1,1,1,1.0);
-        this.blue.setShininess(10.0);
-
-        // Pink color
-        this.pink = new CGFappearance(this.scene);
-        this.pink.setAmbient(0.1,0.1,0.1,1.0);
-        this.pink.setDiffuse(1*0.7,0.714*0.7,0.757*0.7,1.0);
-        this.pink.setSpecular(1,1,1,0);
-        this.pink.setShininess(10.0);
-
-        // orange color
-        this.orange = new CGFappearance(this.scene);
-        this.orange.setAmbient(0.1,0.1,0.1,1.0);
-        this.orange.setDiffuse(1*0.7,0.647*0.7,0,1.0);
-        this.orange.setSpecular(1,1,1,0);
-        this.orange.setShininess(10.0);
-
-        // yellow color
-        this.yellow = new CGFappearance(this.scene);
-        this.yellow.setAmbient(0.1,0.1,0.1,1.0);
-        this.yellow.setDiffuse(1*0.7,1*0.7,0,1.0);
-        this.yellow.setSpecular(1,1,1,0);
-        this.yellow.setShininess(10.0);
-
-        // red color
-        this.red = new CGFappearance(this.scene);
-        this.red.setAmbient(0.1,0.1,0.1,1.0);
-        this.red.setDiffuse(1*0.7,0,0,1.0);
-        this.red.setSpecular(1,1,1,0);
-        this.red.setShininess(10.0);
-
-        // purple color
-        this.purple = new CGFappearance(this.scene);
-        this.purple.setAmbient(0.1,0.1,0.1,1.0);
-        this.purple.setDiffuse(0.58*0.7,0,0.827*0.7,1.0);
-        this.purple.setSpecular(1,1,1,1.0);
-        this.purple.setShininess(10.0);
     }
 
     display() {
