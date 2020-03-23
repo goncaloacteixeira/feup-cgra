@@ -35,12 +35,14 @@ class MyQuad extends CGFobject {
 		
 		/*
 		Texture coords (s,t)
+
+		0			1
 		+----------> s
         |
         |
 		|
 		v
-        t
+        t  1
         */
 
 		this.texCoords = [
