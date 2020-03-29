@@ -11,6 +11,7 @@ class ShaderScene extends CGFscene {
 		this.showShaderCode = false;
 
 		this.scaleFactor = 16.0;
+		this.amplitude = 2.0; // something to play with (ex1.2)
 	}
 
 	init(application) {
@@ -70,6 +71,7 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/sepia.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/convolution.frag"),
 			new CGFshader(this.gl, "shaders/blueYellow.vert", "shaders/blueYellow.frag"), // adding blueYellow shader
+			new CGFshader(this.gl, "shaders/texture3anim2.vert", "shaders/texture3anim2.frag"), // adding blueYellow shader
 		];
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
@@ -77,6 +79,9 @@ class ShaderScene extends CGFscene {
 		this.testShaders[5].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[6].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[6].setUniformsValues({ timeFactor: 0 });
+		this.testShaders[10].setUniformsValues({ timeFactor: 0 });
+		this.testShaders[10].setUniformsValues({ uSampler2: 1 });
+		this.testShaders[10].setUniformsValues({ amplitude: this.amplitude });
 
 
 		// Shaders interface variables
@@ -92,6 +97,7 @@ class ShaderScene extends CGFscene {
 			'Sepia': 7,
 			'Convolution': 8,
 			'Blue and Yellow': 9,		// Ex1.1
+			'Animation 2': 10,			// Ex1.2
 		};
 
 		// shader code panels references
@@ -164,6 +170,11 @@ class ShaderScene extends CGFscene {
 
 	}
 
+	// called when the amplitude (translation) changes on the interface
+	onSpeedChanged(v) {
+		this.testShaders[this.selectedExampleShader].setUniformsValues({ amplitude: this.amplitude });
+	}
+
 	// called when the scale factor changes on the interface
 	onScaleFactorChanged(v) {
 		this.testShaders[this.selectedExampleShader].setUniformsValues({ normScale: this.scaleFactor });
@@ -171,9 +182,11 @@ class ShaderScene extends CGFscene {
 
 	// called periodically (as per setUpdatePeriod() in init())
 	update(t) {
-		// only shader 6 is using time factor
+		// only shader 6 is using time factor (now 10 is using it as well)
 		if (this.selectedExampleShader == 6)
-			this.testShaders[6].setUniformsValues({ timeFactor: t / 100 % 1000 });
+			this.testShaders[6].setUniformsValues({timeFactor: t / 100 % 1000});
+		if (this.selectedExampleShader == 10)
+			this.testShaders[10].setUniformsValues({timeFactor: t / 100 % 1000});
 	}
 
 	// main display function
@@ -206,7 +219,7 @@ class ShaderScene extends CGFscene {
 		// bind additional texture to texture unit 1
 		this.texture2.bind(1);
 
-		if (this.selectedObject==0) {
+		if (this.selectedObject == 0) {
 			// teapot (scaled and rotated to conform to our axis)
 
 			this.pushMatrix();
