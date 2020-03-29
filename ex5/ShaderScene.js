@@ -73,6 +73,8 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/blueYellow.vert", "shaders/blueYellow.frag"), // adding blueYellow shader
 			new CGFshader(this.gl, "shaders/texture3anim2.vert", "shaders/texture3anim2.frag"), // adding blueYellow shader
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/grayscale.frag"), // adding grayscale frag
+
+			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag"), // adding water shader
 		];
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
@@ -83,6 +85,8 @@ class ShaderScene extends CGFscene {
 		this.testShaders[10].setUniformsValues({ timeFactor: 0 });
 		this.testShaders[10].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[10].setUniformsValues({ amplitude: this.amplitude });
+
+		this.testShaders[12].setUniformsValues({ uSampler2: 1 });
 
 
 		// Shaders interface variables
@@ -100,6 +104,8 @@ class ShaderScene extends CGFscene {
 			'Blue and Yellow': 9,		// Ex1.1
 			'Animation 2': 10,			// Ex1.2
 			'Grayscale': 11,			// Ex1.3
+
+			'Water': 12,				// Ex2.1
 		};
 
 		// shader code panels references
