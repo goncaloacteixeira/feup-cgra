@@ -72,6 +72,7 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/convolution.frag"),
 			new CGFshader(this.gl, "shaders/blueYellow.vert", "shaders/blueYellow.frag"), // adding blueYellow shader
 			new CGFshader(this.gl, "shaders/texture3anim2.vert", "shaders/texture3anim2.frag"), // adding blueYellow shader
+			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/grayscale.frag"), // adding grayscale frag
 		];
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
@@ -98,6 +99,7 @@ class ShaderScene extends CGFscene {
 			'Convolution': 8,
 			'Blue and Yellow': 9,		// Ex1.1
 			'Animation 2': 10,			// Ex1.2
+			'Grayscale': 11,			// Ex1.3
 		};
 
 		// shader code panels references
