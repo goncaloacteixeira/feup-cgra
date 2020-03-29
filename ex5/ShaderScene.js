@@ -58,6 +58,9 @@ class ShaderScene extends CGFscene {
 
 		this.texture2 = new CGFtexture(this, "textures/FEUP.jpg");
 
+		this.texture3 = new CGFtexture(this, "textures/waterTex.jpg");
+		this.texture4 = new CGFtexture(this, "textures/waterMap.jpg");
+
 		// shaders initialization
 
 		this.testShaders = [
@@ -87,6 +90,8 @@ class ShaderScene extends CGFscene {
 		this.testShaders[10].setUniformsValues({ amplitude: this.amplitude });
 
 		this.testShaders[12].setUniformsValues({ uSampler2: 1 });
+		this.testShaders[12].setUniformsValues({ uSampler1: 2 });
+		this.testShaders[12].setUniformsValues({ uSampler2: 3 });
 
 
 		// Shaders interface variables
@@ -226,6 +231,10 @@ class ShaderScene extends CGFscene {
 
 		// bind additional texture to texture unit 1
 		this.texture2.bind(1);
+
+		// bind water textures to unit 2 and 3
+		this.texture3.bind(2);
+		this.texture4.bind(3);
 
 		if (this.selectedObject == 0) {
 			// teapot (scaled and rotated to conform to our axis)
