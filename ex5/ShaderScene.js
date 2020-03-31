@@ -42,7 +42,7 @@ class ShaderScene extends CGFscene {
 		this.objectList = {
 			'Teapot': 0,
 			'Plane': 1
-		}
+		};
 
 		// Materials and textures initialization
 
@@ -158,7 +158,7 @@ class ShaderScene extends CGFscene {
 		else
 			this.shadersDiv.style.display = "none";
 	}
-
+	
 	// Called when selected shader changes
 	onSelectedShaderChanged(v) {
 		// update shader code
