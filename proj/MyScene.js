@@ -18,9 +18,25 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
+        this.enableTextures(true);
 
         //Initialize scene objects
-        this.cylinder = new MyCylinder(this, 6, 1);
+        this.cylinder = new MyCylinder(this, 6);
+
+        //------ Applied Material
+        this.Material = new CGFappearance(this);
+        this.Material.setAmbient(0.1, 0.1, 0.1, 1);
+        this.Material.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.Material.setSpecular(0.1, 0.1, 0.1, 1);
+        this.Material.setShininess(10.0);
+        this.Material.loadTexture('images/earth.png');
+        this.Material.setTextureWrap('REPEAT', 'REPEAT');
+        //------
+
+        //------ Textures
+        this.texture1 = new CGFtexture(this, 'images/earth.jpg');
+        this.texture2 = new CGFtexture(this, 'images/cubemap.png');
+        //-------
 
         this.setUpdatePeriod(50);
         
@@ -32,6 +48,8 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.displayNormals = false;
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -72,8 +90,16 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
+        this.Material.setTexture(this.texture1);
+        this.Material.apply();
+
         //This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
+
+        if (this.displayNormals)
+            this.cylinder.enableNormalViz();
+        else
+            this.cylinder.disableNormalViz();
 
         this.cylinder.display();
 
