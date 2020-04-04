@@ -32,12 +32,14 @@ class MyScene extends CGFscene {
         this.objects=[
             new MySphere(this, 16, 8),
             new MyCylinder(this, 6),
+            new MyCubeMap(this),
         ];
 
         // Object interface variables
         this.objectList = {
             'Sphere': 0,
-            'Cylinder': 1
+            'Cylinder': 1,
+            'Cube Map' : 2,
         };
 
         //------ Applied Material
@@ -46,13 +48,13 @@ class MyScene extends CGFscene {
         this.Material.setDiffuse(0.9, 0.9, 0.9, 1);
         this.Material.setSpecular(0.1, 0.1, 0.1, 1);
         this.Material.setShininess(10.0);
-        this.Material.loadTexture('images/earth.png');
+        this.Material.loadTexture('images/earth.jpg');
         this.Material.setTextureWrap('REPEAT', 'REPEAT');
         //------
 
         //------ Textures
         this.texture1 = new CGFtexture(this, 'images/earth.jpg');
-        this.texture2 = new CGFtexture(this, 'images/cubemap.png');
+        this.texture2 = new CGFtexture(this, 'images/test.png');
         //-------
 
         this.setUpdatePeriod(50);
@@ -126,12 +128,20 @@ class MyScene extends CGFscene {
                 this.objects[0].enableNormalViz();
             else
                 this.objects[0].disableNormalViz();
-        }else{
+        }else if(this.selectedObject == 1){
             this.objects[1].display();
             if (this.displayNormals)
                 this.objects[1].enableNormalViz();
             else
                 this.objects[1].disableNormalViz();
+        }else if (this.selectedObject == 2){
+            this.Material.setTexture(this.texture2);
+            this.Material.apply();
+            this.objects[2].display();
+            if (this.displayNormals)
+                this.objects[2].enableNormalViz();
+            else
+                this.objects[2].disableNormalViz();
         }
 
 
