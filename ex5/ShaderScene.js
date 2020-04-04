@@ -17,11 +17,10 @@ class ShaderScene extends CGFscene {
 	init(application) {
 		// main initialization
 		super.init(application);
-
 		this.initCameras();
-
 		this.initLights();
 
+		//Background color
 		this.gl.clearDepth(10000.0);
 		this.gl.clearColor(1, 1, 1, 1.0);
 		this.gl.enable(this.gl.DEPTH_TEST);

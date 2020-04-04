@@ -54,6 +54,15 @@ class MyCylinder extends CGFobject {
         this.initBuffers();
         this.initNormalVizBuffers();
     }
+
+    setFillMode() {
+        this.primitiveType=this.scene.gl.TRIANGLES;
+    }
+
+    setLineMode()
+    {
+        this.primitiveType=this.scene.gl.LINE_STRIP;
+    };
 }
 
 

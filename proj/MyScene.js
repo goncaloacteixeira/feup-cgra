@@ -5,6 +5,12 @@
 class MyScene extends CGFscene {
     constructor() {
         super();
+        this.texture = null;
+        this.appearance = null;
+
+        // initial configuration of interface
+        this.selectedObject = 0;
+        this.wireframe = false;
     }
     init(application) {
         super.init(application);
@@ -21,7 +27,18 @@ class MyScene extends CGFscene {
         this.enableTextures(true);
 
         //Initialize scene objects
-        this.cylinder = new MyCylinder(this, 6);
+        this.axis = new CGFaxis(this);
+
+        this.objects=[
+            new MySphere(this, 16, 8),
+            new MyCylinder(this, 6),
+        ];
+
+        // Object interface variables
+        this.objectList = {
+            'Sphere': 0,
+            'Cylinder': 1
+        };
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -39,12 +56,6 @@ class MyScene extends CGFscene {
         //-------
 
         this.setUpdatePeriod(50);
-        
-        this.enableTextures(true);
-
-        //Initialize scene objects
-        this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -66,6 +77,21 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+
+    // called when a new object is selected
+    onSelectedObjectChanged(v) {
+        // update wireframe mode when the object changes
+        this.onWireframeChanged(this.wireframe);
+    }
+
+    onWireframeChanged(v) {
+        if (v)
+            this.objects[this.selectedObject].setLineMode();
+        else
+            this.objects[this.selectedObject].setFillMode();
+
+    }
+
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
@@ -94,14 +120,23 @@ class MyScene extends CGFscene {
         this.Material.apply();
 
         //This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
+        if (this.selectedObject == 0) {
+            this.objects[0].display();
+            if (this.displayNormals)
+                this.objects[0].enableNormalViz();
+            else
+                this.objects[0].disableNormalViz();
+        }else{
+            this.objects[1].display();
+            if (this.displayNormals)
+                this.objects[1].enableNormalViz();
+            else
+                this.objects[1].disableNormalViz();
+        }
 
-        if (this.displayNormals)
-            this.cylinder.enableNormalViz();
-        else
-            this.cylinder.disableNormalViz();
 
-        this.cylinder.display();
+
+
 
         // ---- END Primitive drawing section
     }
