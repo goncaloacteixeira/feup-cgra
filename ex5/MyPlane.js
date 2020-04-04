@@ -50,7 +50,7 @@ class MyPlane extends CGFobject{
 		this.initGLBuffers();
 	}
 
-	setFillMode() { 
+	setFillMode() {
 		this.primitiveType=this.scene.gl.TRIANGLE_STRIP;
 	}
 

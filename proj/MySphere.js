@@ -82,6 +82,7 @@ class MySphere extends CGFobject {
     this.initGLBuffers();
   }
 
+  // http://www.dgp.toronto.edu/~ah/csc418/fall_2001/tut/ogl_draw.html
   setLineMode()
   {
     this.primitiveType=this.scene.gl.LINE_STRIP;
