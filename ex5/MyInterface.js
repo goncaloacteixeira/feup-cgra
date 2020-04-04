@@ -1,7 +1,5 @@
-
 class MyInterface extends CGFinterface
 {
-
 	/**
 	* MyInterface
 	* @constructor
@@ -10,7 +8,6 @@ class MyInterface extends CGFinterface
 	{
 		//call CGFinterface constructor 
 		super();
-		
 	};
 	/**
 	* init

@@ -18,9 +18,11 @@ uniform float timeFactor;
 
 void main() {
     vTextureCoord = aTextureCoord;
+    vec3 offset = aVertexNormal * texture2D(uSampler2, vTextureCoord).b * 0.05;
 
-    vec3 offset = aVertexNormal * texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord).b * 0.05;
+    vec3 offset2 = aVertexNormal * texture2D(uSampler2, vTextureCoord + sin(timeFactor*0.005)).b * 0.05;
 
-    gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
+
+    gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset + offset2, 1.0);
 }
 
