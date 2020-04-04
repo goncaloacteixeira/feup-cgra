@@ -19,6 +19,9 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
+        //Initialize scene objects
+        this.cylinder = new MyCylinder(this, 6, 1);
+
         this.setUpdatePeriod(50);
         
         this.enableTextures(true);
@@ -70,7 +73,9 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        this.incompleteSphere.display();
+        //this.incompleteSphere.display();
+
+        this.cylinder.display();
 
         // ---- END Primitive drawing section
     }
