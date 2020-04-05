@@ -33,6 +33,7 @@ class MyScene extends CGFscene {
             new MySphere(this, 16, 8),
             new MyCylinder(this, 6),
             new MyCubeMap(this),
+            new MyVehicle(this,4)
         ];
 
         // Object interface variables
@@ -40,6 +41,7 @@ class MyScene extends CGFscene {
             'Sphere': 0,
             'Cylinder': 1,
             'Cube Map' : 2,
+            'Vehicle' : 3
         };
 
         //------ Applied Material
@@ -53,8 +55,18 @@ class MyScene extends CGFscene {
         //------
 
         //------ Textures
-        this.texture1 = new CGFtexture(this, 'images/earth.jpg');
-        this.texture2 = new CGFtexture(this, 'images/test.png');
+        this.textures = [
+            new CGFtexture(this, 'images/earth.jpg'),
+            new CGFtexture(this, 'images/test.png'),
+            new CGFtexture(this, 'images/mountain.png'),
+            new CGFtexture(this, 'images/cubemap.png')
+        ];
+        this.textureList = {
+            'Earth' : 0,
+            'Test' : 1,
+            'Mountain' : 2,
+            'CubeMap' : 3,
+        };
         //-------
 
         this.setUpdatePeriod(50);
@@ -62,6 +74,7 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayNormals = false;
+        this.selectedTexture = -1;
 
     }
     initLights() {
@@ -86,12 +99,22 @@ class MyScene extends CGFscene {
         this.onWireframeChanged(this.wireframe);
     }
 
+    onSelectedTextureChanged(v) {
+        // update wireframe mode when the object changes
+        this.Material.setTexture(this.textures[this.selectedTexture]);
+    }
+
     onWireframeChanged(v) {
         if (v)
             this.objects[this.selectedObject].setLineMode();
         else
             this.objects[this.selectedObject].setFillMode();
 
+    }
+
+    //Function that resets selected texture in quadMaterial
+    updateAppliedTexture() {
+        this.Material.setTexture(this.textures[this.selectedTexture]);
     }
 
     // called periodically (as per setUpdatePeriod() in init())
@@ -117,32 +140,20 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+        this.pushMatrix();
 
-        this.Material.setTexture(this.texture1);
         this.Material.apply();
 
         //This sphere does not have defined texture coordinates
-        if (this.selectedObject == 0) {
-            this.objects[0].display();
-            if (this.displayNormals)
-                this.objects[0].enableNormalViz();
-            else
-                this.objects[0].disableNormalViz();
-        }else if(this.selectedObject == 1){
-            this.objects[1].display();
-            if (this.displayNormals)
-                this.objects[1].enableNormalViz();
-            else
-                this.objects[1].disableNormalViz();
-        }else if (this.selectedObject == 2){
-            this.Material.setTexture(this.texture2);
-            this.Material.apply();
-            this.objects[2].display();
-            if (this.displayNormals)
-                this.objects[2].enableNormalViz();
-            else
-                this.objects[2].disableNormalViz();
-        }
+
+
+        if (this.displayNormals)
+            this.objects[this.selectedObject].enableNormalViz();
+        else
+            this.objects[this.selectedObject].disableNormalViz();
+
+        this.objects[this.selectedObject].display();
+        this.popMatrix();
 
 
 
