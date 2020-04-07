@@ -21,7 +21,7 @@ class MyVehicle extends CGFobject {
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
 
-        for(var i = 0; i < this.slices; i++){
+        for (var i = 0; i < this.slices; i++){
             // All vertices have to be declared for a given face
             // even if they are shared with others, as the normals 
             // in each face will be different

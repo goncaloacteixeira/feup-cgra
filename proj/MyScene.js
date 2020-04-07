@@ -78,6 +78,8 @@ class MyScene extends CGFscene {
         this.displayNormals = false;
         this.selectedTexture = -1;
 
+        this.scaleFactor = 1;
+        this.speedFactor = 1;
     }
 
     checkKeys() {
@@ -85,12 +87,12 @@ class MyScene extends CGFscene {
 
         // keycodes => https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
-            this.vehicle.accelerate(0.2);
+            this.vehicle.accelerate(0.2*this.speedFactor);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
-            this.vehicle.accelerate(-0.2);
+            this.vehicle.accelerate(-0.2*this.speedFactor);
             keysPressed = true;
         }
 
@@ -192,10 +194,16 @@ class MyScene extends CGFscene {
             this.objects[this.selectedObject].disableNormalViz();
 
         this.objects[this.selectedObject].display();
+
+        if (this.displayVehicle) {
+            this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+            this.vehicle.display();
+        }
+
         this.popMatrix();
 
-        if (this.displayVehicle)
-            this.vehicle.display();
+
+
 
 
         // ---- END Primitive drawing section
