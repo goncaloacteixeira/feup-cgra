@@ -11,6 +11,7 @@ class MyScene extends CGFscene {
         // initial configuration of interface
         this.selectedObject = 0;
         this.wireframe = false;
+        this.displayVehicle = false;
     }
     init(application) {
         super.init(application);
@@ -33,7 +34,6 @@ class MyScene extends CGFscene {
             new MySphere(this, 16, 8),
             new MyCylinder(this, 6),
             new MyCubeMap(this),
-            new MyVehicle(this,4)
         ];
 
         // Object interface variables
@@ -41,8 +41,9 @@ class MyScene extends CGFscene {
             'Sphere': 0,
             'Cylinder': 1,
             'Cube Map' : 2,
-            'Vehicle' : 3
         };
+
+        this.vehicle = new MyVehicle(this, 4);
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -155,8 +156,8 @@ class MyScene extends CGFscene {
         this.objects[this.selectedObject].display();
         this.popMatrix();
 
-
-
+        if (this.displayVehicle)
+            this.vehicle.display();
 
 
         // ---- END Primitive drawing section

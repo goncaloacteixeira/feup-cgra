@@ -24,6 +24,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayNormals').name("Display normals");
         this.gui.add(this.scene, 'wireframe').onChange(this.scene.onWireframeChanged.bind(this.scene));
 
+        this.gui.add(this.scene, 'displayVehicle').name('Display Vehicle');
         return true;
     }
 }
