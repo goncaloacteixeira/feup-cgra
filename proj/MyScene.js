@@ -13,6 +13,7 @@ class MyScene extends CGFscene {
         this.wireframe = false;
         this.displayVehicle = false;
     }
+
     init(application) {
         super.init(application);
         this.initCameras();
@@ -78,15 +79,37 @@ class MyScene extends CGFscene {
         this.selectedTexture = -1;
 
     }
+
+    checkKeys() {
+        let text = "Keys pressed: ";
+        let keysPressed = false;
+
+        // keycodes => https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            text += " W ";
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyS")) {
+            text += " S ";
+            keysPressed = true;
+        }
+
+        if (keysPressed)
+            console.log(text);
+    }
+
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
+
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
+
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -120,7 +143,7 @@ class MyScene extends CGFscene {
 
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        //To be done...
+        this.checkKeys();
     }
 
     display() {
