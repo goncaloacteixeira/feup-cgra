@@ -7,7 +7,12 @@ class MyVehicle extends CGFobject {
         super(scene);
         this.slices = slices;
         this.initBuffers();
+
+        this.angle = 0;
+        this.speed = 0;
+        this.x = 0; this.y = 0; this.z = 0;
     }
+
     initBuffers() {
         this.vertices = [];
         this.indices = [];
@@ -69,6 +74,27 @@ class MyVehicle extends CGFobject {
         this.initNormalVizBuffers();
     }
 
+    update() {
+        this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
+        this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
+    }
+
+    turn(val) {
+        this.angle += val;
+    }
+
+    accelerate(val) {
+        this.speed = val;
+    }
+
+    reset() {
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+        this.speed = 0;
+        this.angle = 0;
+    }
+
     display() {
         // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
         this.scene.setDiffuse(0,0,1);
@@ -76,10 +102,16 @@ class MyVehicle extends CGFobject {
         this.scene.setAmbient(0, 0, 0.5, 1);
 
         this.scene.pushMatrix();
+
+        this.scene.translate(this.x, this.y, this.z);
+        this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);
+
         this.scene.translate(0,0,-1);
         this.scene.rotate(90.0*Math.PI/180.0, 1, 0, 0);
         super.display();
+
         this.scene.popMatrix();
+
     }
 
     setFillMode() {

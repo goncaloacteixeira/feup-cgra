@@ -81,22 +81,37 @@ class MyScene extends CGFscene {
     }
 
     checkKeys() {
-        let text = "Keys pressed: ";
         let keysPressed = false;
 
         // keycodes => https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
-            text += " W ";
+            this.vehicle.accelerate(0.2);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
-            text += " S ";
+            this.vehicle.accelerate(-0.2);
             keysPressed = true;
         }
 
+        if (this.gui.isKeyPressed("KeyA")) {
+            this.vehicle.turn(10);
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyD")) {
+            this.vehicle.turn(-10);
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyR")) {
+            this.vehicle.reset();
+            keysPressed = true;
+        }
+
+
         if (keysPressed)
-            console.log(text);
+            this.vehicle.update();
     }
 
     initLights() {
