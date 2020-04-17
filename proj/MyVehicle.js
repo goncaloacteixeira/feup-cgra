@@ -5,8 +5,9 @@
 class MyVehicle extends CGFobject {
     constructor(scene, slices) {
         super(scene);
-        this.slices = slices;
-        this.initBuffers();
+        this.scene = scene;
+
+        this.body = new MyBlimpBody(this.scene);
 
         this.angle = 0;
         this.speed = 0;
@@ -79,13 +80,9 @@ class MyVehicle extends CGFobject {
         this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
     }
 
-    turn(val) {
-        this.angle += val;
-    }
+    turn(val) {this.angle += val;}
 
-    accelerate(val) {
-        this.speed += val;
-    }
+    accelerate(val) {this.speed += val;}
 
     reset() {
         this.x = 0;
@@ -97,19 +94,15 @@ class MyVehicle extends CGFobject {
 
     display() {
         // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
-        this.scene.setDiffuse(0,0,1);
-        this.scene.setSpecular(0, 0, 0, 1);
-        this.scene.setAmbient(0, 0, 0.5, 1);
-
         this.scene.pushMatrix();
 
-        this.scene.translate(this.x, this.y, this.z);
-        this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);
+        //update posição
+        this.scene.translate(this.x, this.y, this.z); // update da posição
+        this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
 
-        this.scene.translate(0,0,-1);
-        this.scene.rotate(90.0*Math.PI/180.0, 1, 0, 0);
-        super.display();
-
+        // this.scene.translate(0,10,0); TODO descomentar no fim
+        //modelagem
+        this.body.display();
         this.scene.popMatrix();
 
     }

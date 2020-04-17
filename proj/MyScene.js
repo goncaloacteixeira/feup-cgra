@@ -10,9 +10,9 @@ class MyScene extends CGFscene {
 
         // initial configuration of interface
         this.selectedObject = 2;
-        this.selectedTexture = 1;
+        this.selectedTexture = 0;
         this.wireframe = false;
-        this.displayVehicle = false;
+        this.displayVehicle = true;
     }
 
     init(application) {
