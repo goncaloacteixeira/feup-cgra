@@ -72,7 +72,7 @@ class MyScene extends CGFscene {
         };
         //-------
 
-        this.setUpdatePeriod(50);
+        this.setUpdatePeriod(1000/60);  // 60Hz
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -87,22 +87,22 @@ class MyScene extends CGFscene {
 
         // keycodes => https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
-            this.vehicle.accelerate(0.02 * this.speedFactor);
+            this.vehicle.accelerate(0.01 * this.speedFactor);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
-            this.vehicle.accelerate(-0.02 * this.speedFactor);
+            this.vehicle.accelerate(-0.01 * this.speedFactor);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyA")) {
-            this.vehicle.turn(10);
+            this.vehicle.turn(5);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
-            this.vehicle.turn(-10);
+            this.vehicle.turn(-5);
             keysPressed = true;
         }
 
