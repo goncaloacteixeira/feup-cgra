@@ -9,7 +9,8 @@ class MyScene extends CGFscene {
         this.appearance = null;
 
         // initial configuration of interface
-        this.selectedObject = 0;
+        this.selectedObject = 2;
+        this.selectedTexture = 1;
         this.wireframe = false;
         this.displayVehicle = false;
     }
@@ -52,7 +53,7 @@ class MyScene extends CGFscene {
         this.Material.setDiffuse(0.9, 0.9, 0.9, 1);
         this.Material.setSpecular(0.1, 0.1, 0.1, 1);
         this.Material.setShininess(10.0);
-        this.Material.loadTexture('images/earth.jpg');
+        this.Material.loadTexture('images/earth.jpg');  //TODO mudar para earth no fim de testar
         this.Material.setTextureWrap('REPEAT', 'REPEAT');
         //------
 
@@ -76,7 +77,6 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayNormals = false;
-        this.selectedTexture = -1;
 
         this.scaleFactor = 1;
         this.speedFactor = 1;
@@ -185,7 +185,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
 
         this.Material.apply();
-
+        this.updateAppliedTexture();
         //This sphere does not have defined texture coordinates
 
 

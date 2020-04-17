@@ -102,8 +102,8 @@ class MyCubeMap extends CGFobject {
 
         this.texCoords=[
             // Face 1 - Back Face
-            1.00, (1/3),
-            0.75, 0.33,
+            1.00, (1/3),  // superior direito
+            0.75, (1/3),  // superior esquerdo
             0.75, (2/3),
             1.00, (2/3),
             // Face 2 - Top Face
@@ -117,10 +117,10 @@ class MyCubeMap extends CGFobject {
             0.50, (2/3),
             0.75, (2/3),
             // Face 4 - Bottom Face
-            0.25, 1.00,
-            0.50, 1.00,
-            0.50, (2/3),
-            0.25, (2/3),
+            0.26, 0.99,  // xx inf esq (aumentar estica para xx neg) / zz inf esq (dim estica para zz pos)
+            0.49, 0.99,  // xx inf dir (dim est xx neg) / zz inf dir (dim est zz pos)
+            0.49, (2/3), // xx sup dir (dim est xx pos) / zz sup dir (aum est zz neg)
+            0.26, (2/3), // xx sup esq (aum est xx neg) / zz sup esq (aum est zz neg)
             // Face 5 - Left Face
             0.25, (1/3),
             0.00, (1/3),
@@ -148,7 +148,7 @@ class MyCubeMap extends CGFobject {
         this.scene.setAmbient(1, 1, 1, 1);
 
         this.scene.pushMatrix();
-        this.scene.scale(10,10,10);
+        this.scene.scale(50,50,50);
         super.display();
         this.scene.popMatrix();
     }
