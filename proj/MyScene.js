@@ -87,12 +87,12 @@ class MyScene extends CGFscene {
 
         // keycodes => https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
-            this.vehicle.accelerate(0.2*this.speedFactor);
+            this.vehicle.accelerate(0.02);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
-            this.vehicle.accelerate(-0.2*this.speedFactor);
+            this.vehicle.accelerate(-0.02);
             keysPressed = true;
         }
 
@@ -159,8 +159,9 @@ class MyScene extends CGFscene {
     }
 
     // called periodically (as per setUpdatePeriod() in init())
-    update(t){
+    update(t) {
         this.checkKeys();
+        this.vehicle.update();
     }
 
     display() {

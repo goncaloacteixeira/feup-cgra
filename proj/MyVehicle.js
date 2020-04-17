@@ -84,7 +84,7 @@ class MyVehicle extends CGFobject {
     }
 
     accelerate(val) {
-        this.speed = val;
+        this.speed += val;
     }
 
     reset() {
