@@ -75,14 +75,19 @@ class MyVehicle extends CGFobject {
         this.initNormalVizBuffers();
     }
 
-    update() {
-        this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
-        this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
+    update(autopilot) {
+        if (!autopilot) {
+            this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
+            this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
+        }
     }
 
     turn(val) {this.angle += val;}
 
-    accelerate(val) {this.speed += val;}
+    accelerate(val) {
+        this.speed += val;
+        if (this.speed < 0) this.speed = 0;
+    }
 
     reset() {
         this.x = 0;
