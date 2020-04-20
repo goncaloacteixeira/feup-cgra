@@ -86,22 +86,22 @@ class MyScene extends CGFscene {
         let keysPressed = false;
 
         // keycodes => https://keycode.info/
-        if (this.gui.isKeyPressed("KeyW")) {
+        if (this.gui.isKeyPressed("KeyW") && !this.vehicle.autopilot) {
             this.vehicle.accelerate(0.005 * this.speedFactor);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyS")) {
+        if (this.gui.isKeyPressed("KeyS") && !this.vehicle.autopilot) {
             this.vehicle.accelerate(-0.005 * this.speedFactor);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyA")) {
+        if (this.gui.isKeyPressed("KeyA") && !this.vehicle.autopilot) {
             this.vehicle.turn(3);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyD")) {
+        if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autopilot) {
             this.vehicle.turn(-3);
             keysPressed = true;
         }
@@ -111,9 +111,14 @@ class MyScene extends CGFscene {
             keysPressed = true;
         }
 
+        if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autopilot) {
+            this.vehicle.activateAutopilot();
+            keysPressed = true;
+        }
+
 
         if (keysPressed)
-            this.vehicle.update(false);
+            this.vehicle.update();
     }
 
     initLights() {
@@ -146,10 +151,15 @@ class MyScene extends CGFscene {
     }
 
     onWireframeChanged(v) {
-        if (v)
+        if (v) {
             this.objects[this.selectedObject].setLineMode();
-        else
+            this.vehicle.setLineMode();
+        }
+
+        else {
+            this.vehicle.setFillMode();
             this.objects[this.selectedObject].setFillMode();
+        }
 
     }
 

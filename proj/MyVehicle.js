@@ -12,6 +12,8 @@ class MyVehicle extends CGFobject {
         this.angle = 0;
         this.speed = 0;
         this.x = 0; this.y = 0; this.z = 0;
+        this.autopilot = false;
+        this.autopilotAngle = 0;
     }
 
     initBuffers() {
@@ -66,6 +68,11 @@ class MyVehicle extends CGFobject {
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
+
+    activateAutopilot() {
+        this.autopilot = true;
+        this.autopilotAngle = 0;
+    }
     
     updateBuffers(complexity){
         this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
@@ -75,14 +82,19 @@ class MyVehicle extends CGFobject {
         this.initNormalVizBuffers();
     }
 
-    update(autopilot) {
-        if (!autopilot) {
+    update() {
+        if (this.autopilot) {
+            this.autopilotAngle += 2.0*Math.PI*(1000.0/60.0) / 5000.0; // formula da velocidade angular (60Hz)
+        }
+        else {
             this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
             this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
         }
     }
 
-    turn(val) {this.angle += val;}
+    turn(val) {
+        this.angle += val;
+    }
 
     accelerate(val) {
         this.speed += val;
@@ -95,6 +107,7 @@ class MyVehicle extends CGFobject {
         this.z = 0;
         this.speed = 0;
         this.angle = 0;
+        this.autopilot = false;
     }
 
     display() {
@@ -102,7 +115,15 @@ class MyVehicle extends CGFobject {
         this.scene.pushMatrix();
 
         //update posição
+
         this.scene.translate(this.x, this.y, this.z); // update da posição
+
+        if (this.autopilot) {
+            this.scene.translate(-5*Math.cos(-this.angle*Math.PI/180.0), 0, -5*Math.sin(-this.angle * Math.PI / 180.0));
+            this.scene.rotate(-this.autopilotAngle, 0, 1, 0);
+            this.scene.translate(5*Math.cos(-this.angle*Math.PI/180.0), 0, 5*Math.sin(-this.angle * Math.PI / 180.0));
+        }
+
         this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
 
         // this.scene.translate(0,10,0); TODO descomentar no fim
