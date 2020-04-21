@@ -10,9 +10,9 @@ class MyScene extends CGFscene {
 
         // initial configuration of interface
         this.selectedObject = 2;
-        this.selectedTexture = 1;
+        this.selectedTexture = 0;
         this.wireframe = false;
-        this.displayVehicle = false;
+        this.displayVehicle = true;
     }
 
     init(application) {
@@ -86,28 +86,33 @@ class MyScene extends CGFscene {
         let keysPressed = false;
 
         // keycodes => https://keycode.info/
-        if (this.gui.isKeyPressed("KeyW")) {
-            this.vehicle.accelerate(0.01 * this.speedFactor);
+        if (this.gui.isKeyPressed("KeyW") && !this.vehicle.autopilot) {
+            this.vehicle.accelerate(0.005 * this.speedFactor);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyS")) {
-            this.vehicle.accelerate(-0.01 * this.speedFactor);
+        if (this.gui.isKeyPressed("KeyS") && !this.vehicle.autopilot) {
+            this.vehicle.accelerate(-0.005 * this.speedFactor);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyA")) {
-            this.vehicle.turn(5);
+        if (this.gui.isKeyPressed("KeyA") && !this.vehicle.autopilot) {
+            this.vehicle.turn(3);
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyD")) {
-            this.vehicle.turn(-5);
+        if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autopilot) {
+            this.vehicle.turn(-3);
             keysPressed = true;
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
             this.vehicle.reset();
+            keysPressed = true;
+        }
+
+        if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autopilot) {
+            this.vehicle.activateAutopilot();
             keysPressed = true;
         }
 
@@ -146,10 +151,15 @@ class MyScene extends CGFscene {
     }
 
     onWireframeChanged(v) {
-        if (v)
+        if (v) {
             this.objects[this.selectedObject].setLineMode();
-        else
+            this.vehicle.setLineMode();
+        }
+
+        else {
+            this.vehicle.setFillMode();
             this.objects[this.selectedObject].setFillMode();
+        }
 
     }
 
