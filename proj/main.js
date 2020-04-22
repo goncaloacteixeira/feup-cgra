@@ -10,6 +10,8 @@ serialInclude(['../lib/CGF.js',
     'MyCubeMap.js',
     'MyVehicle.js',
     'MyBlimpBody.js',
+    'MySemiSphere.js',
+    'MyGondola.js',
 
 main=function()
 {
