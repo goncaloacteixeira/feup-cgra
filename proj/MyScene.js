@@ -194,22 +194,24 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
 
-        this.Material.apply();
-        this.updateAppliedTexture();
         //This sphere does not have defined texture coordinates
-
 
         if (this.displayNormals)
             this.objects[this.selectedObject].enableNormalViz();
         else
             this.objects[this.selectedObject].disableNormalViz();
 
-        this.objects[this.selectedObject].display();
-
         if (this.displayVehicle) {
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
             this.vehicle.display();
         }
+
+        if(this.selectedObject == 2)
+        {
+            this.Material.apply();
+            this.updateAppliedTexture();
+        }
+        this.objects[this.selectedObject].display();
 
         this.popMatrix();
 
