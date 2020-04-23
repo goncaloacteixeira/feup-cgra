@@ -12,6 +12,7 @@ serialInclude(['../lib/CGF.js',
     'MyBlimpBody.js',
     'MySemiSphere.js',
     'MyGondola.js',
+    'MyRudder.js',
 
 main=function()
 {
