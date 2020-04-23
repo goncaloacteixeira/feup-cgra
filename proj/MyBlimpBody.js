@@ -9,45 +9,66 @@ class MyBlimpBody extends CGFobject {
         this.body = new MySphere(scene, 16, 8);
         this.gondola = new MyGondola(scene);
         this.rudder = new MyRudder(scene);
+        this.propeller = new MyPropeller(scene);
     }
 
     display() {
         // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
         this.scene.setDiffuse(0,0,1);
 
+        // Blimp Baloon
         this.scene.pushMatrix();
         this.scene.scale(0.5,0.5,1);
         this.body.display();
         this.scene.popMatrix();
 
+        //Gondola
         this.scene.pushMatrix();
         this.scene.translate(0,-0.5,0);
         this.scene.scale(0.1,0.1,0.1);
         this.gondola.display();
         this.scene.popMatrix();
 
+        // Propeller Motor
         this.scene.pushMatrix();
         this.scene.translate(0.12, -0.55, -0.2)
         this.scene.scale(0.045,0.045,0.1);
         this.body.display();
         this.scene.popMatrix();
 
+        // Propeller Motor
         this.scene.pushMatrix();
         this.scene.translate(-0.12, -0.55, -0.2)
         this.scene.scale(0.045,0.045,0.1);
         this.body.display();
         this.scene.popMatrix();
 
+        // Rudder
         this.scene.pushMatrix();
         this.scene.translate(0.25, 0, -0.7);
         this.scene.rotate(90*Math.PI/180.0, 0, 0, 1);
         this.rudder.display();
         this.scene.popMatrix();
 
+        //Rudder
         this.scene.pushMatrix();
         this.scene.translate(-0.25, 0, -0.7);
         this.scene.rotate(90*Math.PI/180.0, 0, 0, 1);
         this.rudder.display();
+        this.scene.popMatrix();
+
+        //Propeller
+        this.scene.pushMatrix();
+        this.scene.translate(-0.12, -0.55, -0.30);
+        this.scene.scale(0.012, 0.012, 0.012);
+        this.propeller.display();
+        this.scene.popMatrix();
+
+        // Propeller
+        this.scene.pushMatrix();
+        this.scene.translate(0.12, -0.55, -0.30);
+        this.scene.scale(0.012, 0.012, 0.012);
+        this.propeller.display();
         this.scene.popMatrix();
     }
 

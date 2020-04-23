@@ -216,9 +216,6 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
 
-
-
-
         // ---- END Primitive drawing section
     }
 }
