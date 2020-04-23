@@ -128,9 +128,8 @@ class MyVehicle extends CGFobject {
 
         // this.scene.translate(0,10,0); TODO descomentar no fim
         //modelagem
-        this.body.display();
+        this.body.display(this.autopilot);
         this.scene.popMatrix();
-
     }
 
     setFillMode() {
