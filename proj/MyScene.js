@@ -80,45 +80,30 @@ class MyScene extends CGFscene {
 
         this.scaleFactor = 1;
         this.speedFactor = 1;
+
+        this.lastUpdate = 0;
     }
 
     checkKeys() {
-        let keysPressed = false;
-
         // keycodes => https://keycode.info/
-        if (this.gui.isKeyPressed("KeyW") && !this.vehicle.autopilot) {
+        if (this.gui.isKeyPressed("KeyW") && !this.vehicle.autopilot)
             this.vehicle.accelerate(0.005 * this.speedFactor);
-            keysPressed = true;
-        }
 
-        if (this.gui.isKeyPressed("KeyS") && !this.vehicle.autopilot) {
+
+        if (this.gui.isKeyPressed("KeyS") && !this.vehicle.autopilot)
             this.vehicle.accelerate(-0.005 * this.speedFactor);
-            keysPressed = true;
-        }
 
-        if (this.gui.isKeyPressed("KeyA") && !this.vehicle.autopilot) {
+        if (this.gui.isKeyPressed("KeyA") && !this.vehicle.autopilot)
             this.vehicle.turn(3);
-            keysPressed = true;
-        }
 
-        if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autopilot) {
+        if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autopilot)
             this.vehicle.turn(-3);
-            keysPressed = true;
-        }
 
-        if (this.gui.isKeyPressed("KeyR")) {
+        if (this.gui.isKeyPressed("KeyR"))
             this.vehicle.reset();
-            keysPressed = true;
-        }
 
-        if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autopilot) {
+        if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autopilot)
             this.vehicle.activateAutopilot();
-            keysPressed = true;
-        }
-
-
-        if (keysPressed)
-            this.vehicle.update();
     }
 
     initLights() {
@@ -170,8 +155,13 @@ class MyScene extends CGFscene {
 
     // called periodically (as per setUpdatePeriod() in init())
     update(t) {
+        if (this.lastUpdate === 0)
+            this.lastUpdate = t;
+        let elapsedTime = t - this.lastUpdate;
+        this.lastUpdate = t;
+
         this.checkKeys();
-        this.vehicle.update();
+        this.vehicle.update(elapsedTime);
     }
 
     display() {
