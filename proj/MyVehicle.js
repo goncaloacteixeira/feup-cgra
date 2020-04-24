@@ -86,7 +86,7 @@ class MyVehicle extends CGFobject {
 
     update() {
         if (this.autopilot) {
-            this.autopilotAngle += 2.0*Math.PI*(1000.0/60.0) / 5000.0; // formula da velocidade angular (60Hz)
+            this.autopilotAngle += 2.0*Math.PI*(1000.0/60.0) / 3400.0; // formula da velocidade angular (60Hz)
         }
         else {
             this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
