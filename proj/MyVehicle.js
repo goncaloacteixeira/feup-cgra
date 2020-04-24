@@ -11,6 +11,7 @@ class MyVehicle extends CGFobject {
 
         this.angle = 0;
         this.speed = 0;
+        this.propellerangle = 0;
         this.x = 0; this.y = 0; this.z = 0;
         this.autopilot = false;
         this.autopilotAngle = 0;
@@ -71,6 +72,7 @@ class MyVehicle extends CGFobject {
 
     activateAutopilot() {
         this.autopilot = true;
+        this.speed = 0.1;
         this.autopilotAngle = 0;
     }
     
@@ -90,6 +92,7 @@ class MyVehicle extends CGFobject {
             this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
             this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
         }
+        this.propellerangle += 25 * this.speed;
     }
 
     turn(val) {

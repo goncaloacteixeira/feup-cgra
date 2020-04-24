@@ -202,9 +202,13 @@ class MyScene extends CGFscene {
             this.objects[this.selectedObject].disableNormalViz();
 
         if (this.displayVehicle) {
+            this.translate(this.vehicle.x, 0, this.vehicle.z);
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+            this.translate(-this.vehicle.x, 0, -this.vehicle.z);
             this.vehicle.display();
         }
+
+        this.popMatrix();
 
         if(this.selectedObject == 2)
         {
@@ -212,10 +216,6 @@ class MyScene extends CGFscene {
             this.updateAppliedTexture();
         }
         this.objects[this.selectedObject].display();
-
-        this.popMatrix();
-
-
 
 
 
