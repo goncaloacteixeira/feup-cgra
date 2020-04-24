@@ -84,9 +84,10 @@ class MyVehicle extends CGFobject {
         this.initNormalVizBuffers();
     }
 
-    update() {
+    update(elapsedTime) {
         if (this.autopilot) {
-            this.autopilotAngle += 2.0*Math.PI*(1000.0/60.0) / 5000.0; // formula da velocidade angular (60Hz)
+            this.autopilotAngle += 2*Math.PI*elapsedTime/5000.0;
+            console.log(elapsedTime * 0.0001);
         }
         else {
             this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
@@ -106,26 +107,25 @@ class MyVehicle extends CGFobject {
 
     reset() {
         this.x = 0;
-        this.y = 0;
         this.z = 0;
         this.speed = 0;
         this.angle = 0;
         this.autopilot = false;
+        this.autopilotAngle = 0;
     }
 
     display() {
         // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
         this.scene.pushMatrix();
 
-        //update posição
 
         this.scene.translate(this.x, this.y, this.z); // update da posição
 
-        if (this.autopilot) {
-            this.scene.translate(-5*Math.cos(-this.angle*Math.PI/180.0), 0, -5*Math.sin(-this.angle * Math.PI / 180.0));
-            this.scene.rotate(-this.autopilotAngle, 0, 1, 0);
-            this.scene.translate(5*Math.cos(-this.angle*Math.PI/180.0), 0, 5*Math.sin(-this.angle * Math.PI / 180.0));
-        }
+
+        this.scene.translate(-5*Math.cos(-this.angle*Math.PI/180.0), 0, -5*Math.sin(-this.angle * Math.PI / 180.0));
+        this.scene.rotate(-this.autopilotAngle, 0, 1, 0);
+        this.scene.translate(5*Math.cos(-this.angle*Math.PI/180.0), 0, 5*Math.sin(-this.angle * Math.PI / 180.0));
+
 
         this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
 
@@ -139,8 +139,7 @@ class MyVehicle extends CGFobject {
         this.primitiveType=this.scene.gl.TRIANGLES;
     }
 
-    setLineMode()
-    {
+    setLineMode() {
         this.primitiveType=this.scene.gl.LINE_STRIP;
     };
 }
