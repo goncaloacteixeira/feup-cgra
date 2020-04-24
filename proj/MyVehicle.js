@@ -15,7 +15,6 @@ class MyVehicle extends CGFobject {
         this.x = 0; this.y = 0; this.z = 0;
         this.autopilot = false;
         this.autopilotAngle = 0;
-        this.propeller = new MyPropeller(scene);
     }
 
     initBuffers() {
@@ -73,6 +72,7 @@ class MyVehicle extends CGFobject {
 
     activateAutopilot() {
         this.autopilot = true;
+        this.speed = 0.1;
         this.autopilotAngle = 0;
     }
     
@@ -91,8 +91,8 @@ class MyVehicle extends CGFobject {
         else {
             this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
             this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
-            this.propellerangle += this.speed;
         }
+        this.propellerangle += 25 * this.speed;
     }
 
     turn(val) {
@@ -133,27 +133,6 @@ class MyVehicle extends CGFobject {
         //modelagem
         this.body.display(this.autopilot);
         this.scene.popMatrix();
-      
-        //Propeller 1
-        this.scene.pushMatrix();
-        this.scene.translate(this.x, this.y, this.z);
-        this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
-        this.scene.translate(-0.12, -0.55, -0.30);
-        this.scene.rotate(this.propellerangle, 0, 0, 1);
-        this.scene.scale(0.012, 0.012, 0.012);
-        this.propeller.display();
-        this.scene.popMatrix();
-
-        // Propeller 2
-        this.scene.pushMatrix();
-        this.scene.translate(this.x, this.y, this.z);
-        this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
-        this.scene.translate(0.12, -0.55, -0.30);
-        this.scene.rotate(this.propellerangle, 0, 0, 1);
-        this.scene.scale(0.012, 0.012, 0.012);
-        this.propeller.display();
-        this.scene.popMatrix();
-
     }
 
     setFillMode() {

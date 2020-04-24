@@ -74,6 +74,22 @@ class MyBlimpBody extends CGFobject {
             this.scene.rotate(-Math.PI / 9.0, 0, 1, 0);
         this.rudder.display();
         this.scene.popMatrix();
+
+        //Propeller 1
+        this.scene.pushMatrix();
+        this.scene.translate(-0.12, -0.55, -0.30);
+        this.scene.rotate(this.scene.vehicle.propellerangle, 0, 0, 1);
+        this.scene.scale(0.012, 0.012, 0.012);
+        this.propeller.display();
+        this.scene.popMatrix();
+
+        // Propeller 2
+        this.scene.pushMatrix();
+        this.scene.translate(0.12, -0.55, -0.30);
+        this.scene.rotate(this.scene.vehicle.propellerangle, 0, 0, 1);
+        this.scene.scale(0.012, 0.012, 0.012);
+        this.propeller.display();
+        this.scene.popMatrix();
     }
 
     setFillMode() {this.primitiveType=this.scene.gl.TRIANGLES;}
