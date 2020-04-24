@@ -57,7 +57,7 @@ class MyBlimpBody extends CGFobject {
         this.rudder.display();
         this.scene.popMatrix();
 
-        //Propeller
+        /*//Propeller
         this.scene.pushMatrix();
         this.scene.translate(-0.12, -0.55, -0.30);
         this.scene.scale(0.012, 0.012, 0.012);
@@ -69,7 +69,7 @@ class MyBlimpBody extends CGFobject {
         this.scene.translate(0.12, -0.55, -0.30);
         this.scene.scale(0.012, 0.012, 0.012);
         this.propeller.display();
-        this.scene.popMatrix();
+        this.scene.popMatrix();*/
     }
 
     setFillMode() {this.primitiveType=this.scene.gl.TRIANGLES;}
