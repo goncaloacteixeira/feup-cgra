@@ -184,17 +184,16 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
-        // Draw axis
-        if (this.displayAxis)
-            this.axis.display();
-
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
 
         //This sphere does not have defined texture coordinates
+
+        // Draw axis
+        if (this.displayAxis)
+            this.axis.display();
 
         if (this.displayNormals)
             this.objects[this.selectedObject].enableNormalViz();
