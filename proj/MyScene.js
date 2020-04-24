@@ -9,8 +9,7 @@ class MyScene extends CGFscene {
         this.appearance = null;
 
         // initial configuration of interface
-        this.selectedObject = 2;
-        this.selectedTexture = 0;
+        this.selectedTexture = 3;
         this.wireframe = false;
         this.displayVehicle = true;
     }
@@ -31,20 +30,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-
-        this.objects=[
-            new MySphere(this, 16, 8),
-            new MyCylinder(this, 6),
-            new MyCubeMap(this),
-        ];
-
-        // Object interface variables
-        this.objectList = {
-            'Sphere': 0,
-            'Cylinder': 1,
-            'Cube Map' : 2,
-        };
-
+        this.cubeMap = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this, 4);
 
         //------ Applied Material
@@ -124,12 +110,6 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    // called when a new object is selected
-    onSelectedObjectChanged(v) {
-        // update wireframe mode when the object changes
-        this.onWireframeChanged(this.wireframe);
-    }
-
     onSelectedTextureChanged(v) {
         // update wireframe mode when the object changes
         this.Material.setTexture(this.textures[this.selectedTexture]);
@@ -137,13 +117,13 @@ class MyScene extends CGFscene {
 
     onWireframeChanged(v) {
         if (v) {
-            this.objects[this.selectedObject].setLineMode();
+            this.cubeMap.setLineMode();
             this.vehicle.setLineMode();
         }
 
         else {
             this.vehicle.setFillMode();
-            this.objects[this.selectedObject].setFillMode();
+            this.cubeMap.setFillMode();
         }
 
     }
@@ -185,10 +165,6 @@ class MyScene extends CGFscene {
         if (this.displayAxis)
             this.axis.display();
 
-        if (this.displayNormals)
-            this.objects[this.selectedObject].enableNormalViz();
-        else
-            this.objects[this.selectedObject].disableNormalViz();
 
         if (this.displayVehicle) {
             this.translate(this.vehicle.x, 0, this.vehicle.z);
@@ -199,14 +175,10 @@ class MyScene extends CGFscene {
 
         this.popMatrix();
 
-        if(this.selectedObject == 2)
-        {
-            this.Material.apply();
-            this.updateAppliedTexture();
-        }
-        this.objects[this.selectedObject].display();
+        this.Material.apply();
+        this.updateAppliedTexture();
 
-
+        this.cubeMap.display();
 
         // ---- END Primitive drawing section
     }
