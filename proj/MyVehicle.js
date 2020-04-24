@@ -131,9 +131,9 @@ class MyVehicle extends CGFobject {
 
         // this.scene.translate(0,10,0); TODO descomentar no fim
         //modelagem
-        this.body.display();
+        this.body.display(this.autopilot);
         this.scene.popMatrix();
-
+      
         //Propeller 1
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
@@ -153,7 +153,6 @@ class MyVehicle extends CGFobject {
         this.scene.scale(0.012, 0.012, 0.012);
         this.propeller.display();
         this.scene.popMatrix();
-
 
     }
 
