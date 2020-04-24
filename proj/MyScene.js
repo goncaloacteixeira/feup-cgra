@@ -68,6 +68,14 @@ class MyScene extends CGFscene {
         this.speedFactor = 1;
 
         this.lastUpdate = 0;
+
+        this.terrainShader = new CGFshader(this.gl, 'shaders/terrain.vert', 'shaders/terrain.frag');
+        this.texture1 = new CGFtexture(this, 'images/terrain.jpg');
+        this.texture2 = new CGFtexture(this, 'images/heightmap.jpg');
+
+        this.terrainShader.setUniformsValues({ uSampler1: 1});
+        this.terrainShader.setUniformsValues({ uSampler2: 2});
+        this.plane = new MyPlane(this, 50);
     }
 
     checkKeys() {
@@ -167,18 +175,33 @@ class MyScene extends CGFscene {
 
 
         if (this.displayVehicle) {
-            this.translate(this.vehicle.x, 0, this.vehicle.z);
+            this.translate(this.vehicle.x, 10, this.vehicle.z);
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-            this.translate(-this.vehicle.x, 0, -this.vehicle.z);
+            this.translate(-this.vehicle.x, -10, -this.vehicle.z);
             this.vehicle.display();
         }
-
         this.popMatrix();
 
         this.Material.apply();
         this.updateAppliedTexture();
 
         this.cubeMap.display();
+
+        this.setActiveShader(this.terrainShader);
+        this.pushMatrix();
+
+        this.texture1.bind(1);
+        this.texture2.bind(2);
+
+        this.pushMatrix();
+        this.rotate(-Math.PI / 2.0, 1, 0, 0);
+        this.scale(50, 50, 50);
+        this.plane.display();
+
+        this.popMatrix();
+
+        // restore default shader (will be needed for drawing the axis in next frame)
+        this.setActiveShader(this.defaultShader);
 
         // ---- END Primitive drawing section
     }

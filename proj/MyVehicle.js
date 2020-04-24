@@ -87,7 +87,6 @@ class MyVehicle extends CGFobject {
     update(elapsedTime) {
         if (this.autopilot) {
             this.autopilotAngle += 2*Math.PI*elapsedTime/5000.0;
-            console.log(elapsedTime * 0.0001);
         }
         else {
             this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
@@ -118,19 +117,17 @@ class MyVehicle extends CGFobject {
         // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
         this.scene.pushMatrix();
 
-
         this.scene.translate(this.x, this.y, this.z); // update da posição
 
-
-        this.scene.translate(-5*Math.cos(-this.angle*Math.PI/180.0), 0, -5*Math.sin(-this.angle * Math.PI / 180.0));
-        this.scene.rotate(-this.autopilotAngle, 0, 1, 0);
-        this.scene.translate(5*Math.cos(-this.angle*Math.PI/180.0), 0, 5*Math.sin(-this.angle * Math.PI / 180.0));
-
+        // auto-pilot
+        if (this.autopilot) {
+            this.scene.translate(-5 * Math.cos(-this.angle * Math.PI / 180.0), 0, -5 * Math.sin(-this.angle * Math.PI / 180.0));
+            this.scene.rotate(-this.autopilotAngle, 0, 1, 0);
+            this.scene.translate(5 * Math.cos(-this.angle * Math.PI / 180.0), 0, 5 * Math.sin(-this.angle * Math.PI / 180.0));
+        }
 
         this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
-
-        // this.scene.translate(0,10,0); TODO descomentar no fim
-        //modelagem
+        this.scene.translate(0, 10, 0);
         this.body.display(this.autopilot);
         this.scene.popMatrix();
     }
