@@ -13,8 +13,11 @@ const SupplyStates = {
 class MySupply extends CGFobject {
     constructor(scene) {
         super(scene);
+        this.y = 9;
+        this.x = 0;
+        this.z = 0;
         this.box = new MyUnitCubeQuad(this.scene);
-        this.state = SupplyStates.FALLING; // TODO - trocar para INACTIVE quando terminar a modelação
+        this.state = SupplyStates.INACTIVE; // TODO - trocar para INACTIVE quando terminar a modelação
     }
 
 
@@ -34,7 +37,9 @@ class MySupply extends CGFobject {
      * @param dropz  valor inicial de z para drop
      */
     drop(dropx, dropz){
-
+        this.state = SupplyStates.FALLING;
+        this.x = dropx;
+        this.z = dropz;
     }
 
     /**
@@ -50,13 +55,13 @@ class MySupply extends CGFobject {
     display() {
         if (this.state === SupplyStates.FALLING) {
             this.scene.pushMatrix();
-            this.scene.translate(0, 5, 0);
+            this.scene.translate(this.x, this.y, this.z);
             this.box.display(/* adicionar aqui o state que vai fazer a caixa ser desenhada normalmente */);
             this.scene.popMatrix();
         }
         else if (this.state === SupplyStates.LANDED) {
             this.scene.pushMatrix();
-            this.scene.translate(0, 5, 0);
+            this.scene.translate(this.x, this.y, this.z);
             this.box.display(/* adicionar aqui o state que vai fazer a caixa ser desenhada aberta */);
             this.scene.popMatrix();
         }
