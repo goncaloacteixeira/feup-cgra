@@ -12,7 +12,7 @@ class MyVehicle extends CGFobject {
         this.angle = 0;
         this.speed = 0;
         this.propellerangle = 0;
-        this.x = 0; this.y = 0; this.z = 0;
+        this.x = 0; this.y = 10; this.z = 0;
         this.autopilot = false;
         this.autopilotAngle = 0;
     }
@@ -127,9 +127,9 @@ class MyVehicle extends CGFobject {
         }
 
         this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
-        this.scene.translate(0, 10, 0);
         this.body.display(this.autopilot);
         this.scene.popMatrix();
+
     }
 
     setFillMode() {
