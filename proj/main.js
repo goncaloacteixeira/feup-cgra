@@ -19,6 +19,7 @@ serialInclude(['../lib/CGF.js',
     'MySupply.js',
     'MyQuad.js',
     'MyUnitCubeQuad.js',
+    'MyTerrain.js',
 
 
 main=function()
