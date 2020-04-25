@@ -110,7 +110,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(1.0, 0.1, 500, vec3.fromValues(21, 10, 21), vec3.fromValues(0, 2, 0));
     }
 
     setDefaultAppearance() {
@@ -187,7 +187,10 @@ class MyScene extends CGFscene {
         this.Material.apply();
         this.updateAppliedTexture();
 
+        this.pushMatrix();
+        this.translate(0, 10, 0);
         this.cubeMap.display();
+        this.popMatrix();
 
         this.setActiveShader(this.terrainShader);
         this.pushMatrix();
