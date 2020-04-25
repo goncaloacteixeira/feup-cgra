@@ -142,7 +142,7 @@ class MyCubeMap extends CGFobject {
     }
 
     display() {
-        // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
+        this.scene.setGlobalAmbientLight(0.7, 0.7, 0.7, 1);
         this.scene.setDiffuse(0,0,0);
         this.scene.setSpecular(0, 0, 0, 0);
         this.scene.setAmbient(1, 1, 1, 0);
