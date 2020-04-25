@@ -32,6 +32,15 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.cubeMap = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this, 4);
+        this.terrain = new MyTerrain(this);
+        this.supplies = [
+            new MySupply(this),
+            new MySupply(this),
+            new MySupply(this),
+            new MySupply(this),
+            new MySupply(this),
+        ];
+        //------
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -65,29 +74,11 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayNormals = false;
-
         this.scaleFactor = 1;
         this.speedFactor = 1;
+        //-------
 
         this.lastUpdate = 0;
-
-        this.terrainShader = new CGFshader(this.gl, 'shaders/terrain.vert', 'shaders/terrain.frag');
-        this.texture1 = new CGFtexture(this, 'images/shader_images/terrain3.png');
-        this.texture2 = new CGFtexture(this, 'images/shader_images/heightmap3_square.png');
-
-        this.terrainShader.setUniformsValues({ uSampler1: 1});
-        this.terrainShader.setUniformsValues({ uSampler2: 2});
-        this.plane = new MyPlane(this, 50);
-        this.supply = new MySupply(this);
-
-        //Supplies
-        this.supplies = [
-            new MySupply(this),
-            new MySupply(this),
-            new MySupply(this),
-            new MySupply(this),
-            new MySupply(this),
-        ];
         this.nSuppliesDelivered = 0;
         this.timeAfterLastSupply = Number.MAX_VALUE;
     }
@@ -199,13 +190,9 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
-
-        //This sphere does not have defined texture coordinates
-
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-
 
         if (this.displayVehicle) {
             this.translate(this.vehicle.x, 10, this.vehicle.z);
@@ -213,12 +200,10 @@ class MyScene extends CGFscene {
             this.translate(-this.vehicle.x, -10, -this.vehicle.z);
             this.vehicle.display();
         }
-
         this.popMatrix();
 
-        for (var i=0 ; i<5; i++){
+        for (var i=0 ; i<5; i++)
             this.supplies[i].display();
-        }
 
         this.Material.apply();
         this.updateAppliedTexture();
@@ -228,24 +213,7 @@ class MyScene extends CGFscene {
         this.cubeMap.display();
         this.popMatrix();
 
-        this.setActiveShader(this.terrainShader);
-        this.pushMatrix();
-
-        this.texture1.bind(1);
-        this.texture2.bind(2);
-
-        this.pushMatrix();
-        this.rotate(-Math.PI / 2.0, 1, 0, 0);
-        this.scale(50, 50, 50);
-        this.plane.display();
-
-        this.popMatrix();
-
-        // restore default shader (will be needed for drawing the axis in next frame)
-        this.setActiveShader(this.defaultShader);
-
-        this.supply.display();
-
+        this.terrain.display();
 
         // ---- END Primitive drawing section
     }
