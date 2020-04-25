@@ -214,11 +214,11 @@ class MyScene extends CGFscene {
             this.vehicle.display();
         }
 
+        this.popMatrix();
+
         for (var i=0 ; i<5; i++){
             this.supplies[i].display();
         }
-
-        this.popMatrix();
 
         this.Material.apply();
         this.updateAppliedTexture();
