@@ -13,7 +13,6 @@ class MyUnitCubeQuad extends CGFobject {
     
     display(state) {
         if (state === 1) {
-            // Face da frente
             this.scene.pushMatrix();
             this.scene.translate(0, 0, 0.5);
             this.face.display();
