@@ -89,8 +89,8 @@ class MyVehicle extends CGFobject {
             this.autopilotAngle += 2*Math.PI*elapsedTime/5000.0;
         }
         else {
-            this.z += this.speed * Math.cos(this.angle*Math.PI/180.0);
-            this.x += this.speed * Math.sin(this.angle*Math.PI/180.0);
+            this.z += 0.1 * elapsedTime * this.speed * Math.cos(this.angle*Math.PI/180.0);
+            this.x += 0.1 * elapsedTime * this.speed * Math.sin(this.angle*Math.PI/180.0);
         }
         this.propellerangle += 25 * this.speed;
     }
