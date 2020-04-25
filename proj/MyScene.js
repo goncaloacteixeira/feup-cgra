@@ -72,8 +72,8 @@ class MyScene extends CGFscene {
         this.lastUpdate = 0;
 
         this.terrainShader = new CGFshader(this.gl, 'shaders/terrain.vert', 'shaders/terrain.frag');
-        this.texture1 = new CGFtexture(this, 'images/terrain.jpg');
-        this.texture2 = new CGFtexture(this, 'images/heightmap.jpg');
+        this.texture1 = new CGFtexture(this, 'images/shader_images/terrain3.png');
+        this.texture2 = new CGFtexture(this, 'images/shader_images/heightmap3.png');
 
         this.terrainShader.setUniformsValues({ uSampler1: 1});
         this.terrainShader.setUniformsValues({ uSampler2: 2});
