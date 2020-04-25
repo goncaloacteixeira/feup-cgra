@@ -102,35 +102,35 @@ class MyCubeMap extends CGFobject {
 
         this.texCoords=[
             // Face 1 - Back Face
-            1.00, (1/3),  // superior direito
-            0.75, (1/3),  // superior esquerdo
-            0.75, (2/3),
-            1.00, (2/3),
+            1.00, (0.335), // sup dir (dim est para direita)  // sup dir (aum est para cima)
+            0.75, (0.335), // sup esq (aum est para esquerda) // sup esq (aum est para cima)
+            0.75, (0.664), // inf esq (aum est para esquerda) // inf esq (dim est para baixo)
+            1.00, (0.664), // inf dir (dim est para direita)  // ind dir (dim est para baixo)
             // Face 2 - Top Face
-            0.25, (1/3),
-            0.50, (1/3),
-            0.50, 0.00,
-            0.25, 0.00,
+            0.251, (0.332), // inf esq (aum est para esquerda) // inf esq (dim est para baixo)
+            0.499, (0.332), // inf dir (dim est para direita)  // inf dir (dim est para baixo)
+            0.499, 0.002,  // sup dir (dim est para direita)  // sup dir (aum est para cima)
+            0.251, 0.002,  // sup esq (aum est para esquerda)  // sup esq (aum esr para cima)
             // Face 3 - Right Face
-            0.75, (1/3),
-            0.50, (1/3),
-            0.50, (2/3),
-            0.75, (2/3),
+            0.75, (0.335),
+            0.50, (0.335),
+            0.50, (0.664),
+            0.75, (0.664),
             // Face 4 - Bottom Face
             0.26, 0.99,  // xx inf esq (aumentar estica para xx neg) / zz inf esq (dim estica para zz pos)
             0.49, 0.99,  // xx inf dir (dim est xx neg) / zz inf dir (dim est zz pos)
-            0.49, (2/3), // xx sup dir (dim est xx pos) / zz sup dir (aum est zz neg)
-            0.26, (2/3), // xx sup esq (aum est xx neg) / zz sup esq (aum est zz neg)
+            0.49, (0.664), // xx sup dir (dim est xx pos) / zz sup dir (aum est zz neg)
+            0.26, (0.664), // xx sup esq (aum est xx neg) / zz sup esq (aum est zz neg)
             // Face 5 - Left Face
-            0.25, (1/3),
-            0.00, (1/3),
-            0.00, (2/3),
-            0.25, (2/3),
+            0.25, (0.335),
+            0.00, (0.335),
+            0.00, (0.663),
+            0.25, (0.664),
             // Face 6 - Front Face
-            0.50, (1/3),
-            0.25, (1/3),
-            0.25, (2/3),
-            0.50, (2/3),
+            0.50, (0.335),
+            0.25, (0.335),
+            0.25, (0.664),
+            0.50, (0.664),
 
         ];
 
