@@ -21,16 +21,14 @@ class MyBillboard extends CGFobject {
         this.boardTex.setDiffuse(0.9, 0.9, 0.9, 1);
         this.boardTex.setSpecular(0.1, 0.1, 0.1, 1);
         this.boardTex.setShininess(10.0);
-        this.boardTex.loadTexture('images/goodyear_blue.jpg');
+        this.boardTex.loadTexture('images/billboard.jpg');
         this.boardTex.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.tex1 = new CGFappearance(this.scene);
-        this.tex1.setAmbient(0.1, 0.1, 0.1, 1);
-        this.tex1.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.tex1.setSpecular(0.1, 0.1, 0.1, 1);
-        this.tex1.setShininess(10.0);
-        this.tex1.loadTexture('images/goodyear_yellow.jpg');
-        this.tex1.setTextureWrap('REPEAT', 'REPEAT');
+        this.legs = new CGFappearance(this.scene);
+        this.legs.setAmbient(0.1, 0.1, 0.1, 1);
+        this.legs.setDiffuse(0.1, 0.1, 0.1, 1);
+        this.legs.setSpecular(0.1, 0.1, 0.1, 1);
+        this.legs.setShininess(10.0);
     }
 
     updateBillboard() {
@@ -44,7 +42,7 @@ class MyBillboard extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(5, 5, 17);
+        this.scene.translate(12, 5, 17);
         this.scene.rotate(Math.PI / 3.0, 0, 1, 0);
 
         this.boardTex.apply();
@@ -53,6 +51,7 @@ class MyBillboard extends CGFobject {
         this.board.display();
         this.scene.popMatrix();
 
+        this.legs.apply();
         this.scene.pushMatrix();
         this.scene.translate(-0.7, -1, 0);
         this.scene.scale(0.1, 1, 1);
