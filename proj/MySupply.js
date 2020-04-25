@@ -70,7 +70,7 @@ class MySupply extends CGFobject {
      * FALLING para LANDED.
      */
     land(){
-        this.y = 0.5;
+        this.y = 0.6;
         this.state = SupplyStates.LANDED;
     }
 
@@ -81,6 +81,8 @@ class MySupply extends CGFobject {
         else
             this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.LINEAR);
         this.scene.pushMatrix();
+        if (this.state === SupplyStates.LANDED)
+            this.scene.translate(0, 0.01, 0);
         this.scene.translate(this.x, this.y, this.z); // TODO - retirar no fim
         this.box.display(this.state);
         this.scene.popMatrix();
@@ -92,7 +94,7 @@ class MySupply extends CGFobject {
             else
                 this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.LINEAR);
             this.scene.pushMatrix();
-            this.scene.translate(this.x, this.y, this.z);
+            this.scene.translate(this.x, this.y - 0.15, this.z);
             this.scene.scale(0.7, 0.7, 0.7);
             this.package.display(1);
             this.scene.popMatrix();
