@@ -89,6 +89,7 @@ class MyScene extends CGFscene {
             new MySupply(this),
         ];
         this.nSuppliesDelivered = 0;
+        this.timeAfterLastSupply = Number.MAX_VALUE;
     }
 
     checkKeys() {
@@ -110,19 +111,21 @@ class MyScene extends CGFscene {
             this.nSuppliesDelivered = 0;
             for (var i=0 ; i<5; i++){
                 this.supplies[i].state = SupplyStates.INACTIVE;
+                this.supplies[i].passedtime = 0;
+                this.supplies[i].y = 9;
             }
         }
 
         if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autopilot)
             this.vehicle.activateAutopilot();
 
-        if (this.gui.isKeyPressed("KeyL")){
-            if (this.nSuppliesDelivered !== 5) {
+        if (this.gui.isKeyPressed("KeyL")) {
+            if (this.nSuppliesDelivered !== 5 && this.timeAfterLastSupply > 500) {
                 this.supplies[this.nSuppliesDelivered].drop(this.vehicle.x, this.vehicle.z);
                 this.nSuppliesDelivered++;
+                this.timeAfterLastSupply = 0;
             }
         }
-
     }
 
     initLights() {
@@ -174,10 +177,12 @@ class MyScene extends CGFscene {
         this.lastUpdate = t;
 
         this.checkKeys();
+
         this.vehicle.update(elapsedTime);
         for (var i=0 ; i<5; i++){
             this.supplies[i].update(elapsedTime);
         }
+        this.timeAfterLastSupply += elapsedTime;
     }
 
     display() {

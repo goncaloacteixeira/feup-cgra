@@ -16,6 +16,7 @@ class MySupply extends CGFobject {
         this.y = 9;
         this.x = 0;
         this.z = 0;
+        this.passedtime = 0;
         this.box = new MyUnitCubeQuad(this.scene);
         this.state = SupplyStates.INACTIVE; // TODO - trocar para INACTIVE quando terminar a modelação
     }
@@ -24,7 +25,10 @@ class MySupply extends CGFobject {
     update(elapsedtime) {
         if (this.state === SupplyStates.FALLING){
             // Se chegou ao fim, chamar land
-
+            this.passedtime += elapsedtime;
+            this.y = 9 - (this.passedtime * 0.0027);
+            if (this.y <= 0.4)
+                this.land();
         }
     }
 
@@ -48,9 +52,9 @@ class MySupply extends CGFobject {
      * FALLING para LANDED.
      */
     land(){
-
+        this.y = 0.5;
+        this.state = SupplyStates.LANDED;
     }
-
 
     display() {
         if (this.state === SupplyStates.FALLING) {
