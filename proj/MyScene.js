@@ -78,6 +78,7 @@ class MyScene extends CGFscene {
         this.terrainShader.setUniformsValues({ uSampler1: 1});
         this.terrainShader.setUniformsValues({ uSampler2: 2});
         this.plane = new MyPlane(this, 50);
+        this.supply = new MySupply(this);
     }
 
     checkKeys() {
@@ -207,6 +208,9 @@ class MyScene extends CGFscene {
 
         // restore default shader (will be needed for drawing the axis in next frame)
         this.setActiveShader(this.defaultShader);
+
+        this.supply.display();
+
 
         // ---- END Primitive drawing section
     }
