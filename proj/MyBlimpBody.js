@@ -16,10 +16,11 @@ class MyBlimpBody extends CGFobject {
         this.time = 0;
 
         this.waveshader = new CGFshader(scene.gl, 'shaders/flag.vert', 'shaders/flag.frag');
+        this.texture1 = new CGFtexture(this, 'images/goodyear.jpg');
+        this.waveshader.setUniformsValues({uSampler1: 1})
+
         this.waveshader.setUniformsValues({blimpSpeed: 0});
         this.waveshader.setUniformsValues({timeFactor: this.time});
-        this.texture1 = new CGFtexture(this, 'images/goodyear_yellow.jpg');
-        this.waveshader.setUniformsValues({uSampler1: 1})
     }
 
     initMaterials(scene){
@@ -48,6 +49,13 @@ class MyBlimpBody extends CGFobject {
         this.yellowcolorTex.loadTexture('images/goodyear_yellow.jpg');
         this.yellowcolorTex.setTextureWrap('REPEAT', 'REPEAT');
 
+        this.flagTex = new CGFappearance(this.scene);
+        this.flagTex.setAmbient(0.1, 0.1, 0.1, 1);
+        this.flagTex.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.flagTex.setSpecular(0.1, 0.1, 0.1, 1);
+        this.flagTex.setShininess(10.0);
+        this.flagTex.loadTexture('images/goodyear_flag.png');
+        this.flagTex.setTextureWrap('REPEAT', 'REPEAT');
     }
 
     update(elapsedTime, blimpspeed)
@@ -150,11 +158,14 @@ class MyBlimpBody extends CGFobject {
         this.rudder.display();
         this.scene.popMatrix();
 
+        this.flagTex.apply();
+
         if (this.scene.displayFlag === true) {
             // Flag Side 1
+            this.waveshader.setUniformsValues({uSampler1: 0})
             this.scene.setActiveShader(this.waveshader);
-            this.texture1.bind(1);
             this.scene.pushMatrix();
+            this.texture1.bind(0);
             this.scene.translate(0,0,-2.5);
             this.scene.scale(1,0.5,1.3);
             this.scene.rotate(-90*Math.PI/180.0,0,1,0);
@@ -165,6 +176,7 @@ class MyBlimpBody extends CGFobject {
             // Flag Side 2
             this.scene.setActiveShader(this.waveshader);
             this.scene.pushMatrix();
+            this.texture1.bind(0);
             this.scene.translate(0,0,-2.5);
             this.scene.scale(1,0.5,1.3);
             this.scene.rotate(90*Math.PI/180.0,0,1,0);
