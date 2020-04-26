@@ -93,6 +93,7 @@ class MyVehicle extends CGFobject {
             this.x += 0.1 * elapsedTime * this.speed * Math.sin(this.angle*Math.PI/180.0);
         }
         this.propellerangle += 25 * this.speed;
+        this.body.update(elapsedTime, this.speed);
     }
 
     turn(val) {
@@ -102,6 +103,7 @@ class MyVehicle extends CGFobject {
     accelerate(val) {
         this.speed += val;
         if (this.speed < 0) this.speed = 0;
+        this.body.waveshader.setUniformsValues({blimpSpeed: this.speed});
     }
 
     reset() {

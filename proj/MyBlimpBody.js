@@ -12,6 +12,14 @@ class MyBlimpBody extends CGFobject {
         this.rudder = new MyRudder(scene);
         this.propeller = new MyPropeller(scene);
         this.flag = new MyPlane(scene, 20);
+        this.support = new MyUnitCubeQuad(scene);
+        this.time = 0;
+
+        this.waveshader = new CGFshader(scene.gl, 'shaders/flag.vert', 'shaders/flag.frag');
+        this.waveshader.setUniformsValues({blimpSpeed: 0});
+        this.waveshader.setUniformsValues({timeFactor: this.time});
+        this.waveshader.setUniformsValues({uSampler1: 1});
+        this.texture1 = new CGFtexture(this, 'images/goodyear_yellow.jpg');
 
     }
 
@@ -40,6 +48,14 @@ class MyBlimpBody extends CGFobject {
         this.yellowcolorTex.setShininess(10.0);
         this.yellowcolorTex.loadTexture('images/goodyear_yellow.jpg');
         this.yellowcolorTex.setTextureWrap('REPEAT', 'REPEAT');
+
+    }
+
+    update(elapsedTime, blimpspeed)
+    {
+        this.time += elapsedTime;
+        this.waveshader.setUniformsValues({timeFactor: this.time});
+        this.waveshader.setUniformsValues({blimpSpeed: blimpspeed});
     }
 
     display(v) {
@@ -112,8 +128,8 @@ class MyBlimpBody extends CGFobject {
         this.scene.translate(0, 0.25, -0.7);
         if (this.scene.gui.isKeyPressed("KeyD") || v)
             this.scene.rotate(Math.PI / 9.0, 0, 1, 0);
-        if (this.scene.gui.isKeyPressed("KeyA"))
-            this.scene.rotate(-Math.PI / 9.0, 0, 1, 0);
+        /*if (this.scene.gui.isKeyPressed("KeyA"))*/
+        this.scene.rotate(-Math.PI / 9.0, 0, 1, 0);
         this.rudder.display();
         this.scene.popMatrix();
 
@@ -128,13 +144,17 @@ class MyBlimpBody extends CGFobject {
         this.scene.popMatrix();
 
         // Flag Side 1
+        this.scene.setActiveShader(this.waveshader);
+        this.texture1.bind(2);
         this.scene.pushMatrix();
         this.scene.translate(0,0,-2.5);
         this.scene.scale(1,0.5,1.3);
         this.scene.rotate(-90*Math.PI/180.0,0,1,0);
         this.flag.display();
         this.scene.popMatrix();
+        this.scene.setActiveShader(this.scene.defaultShader);
 
+        /*
         // Flag Side 2
         this.scene.pushMatrix();
         this.scene.translate(0,0,-2.5);
@@ -142,6 +162,16 @@ class MyBlimpBody extends CGFobject {
         this.scene.rotate(90*Math.PI/180.0,0,1,0);
         this.flag.display();
         this.scene.popMatrix();
+
+        // String Holder
+        this.scene.pushMatrix();
+        this.scene.translate(0.17,0.25,-1.22);
+        this.scene.rotate(13*Math.PI/180.0,0,1,0);
+        this.scene.scale(0.01, 0.01, 1.5);
+        this.support.display(1);
+        this.scene.popMatrix();
+        */
+
     }
 
     setFillMode() {this.primitiveType=this.scene.gl.TRIANGLES;}

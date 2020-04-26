@@ -6,7 +6,6 @@
 class MyUnitCubeQuad extends CGFobject {
     constructor(scene) {
         super(scene);
-
         this.face = new MyQuad(this.scene);
     }
 
