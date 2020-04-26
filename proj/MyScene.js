@@ -216,7 +216,6 @@ class MyScene extends CGFscene {
         this.translate(0, 10, 0);
         this.cubeMap.display();
         this.popMatrix();
-
         // ---- END Primitive drawing section
     }
 }
