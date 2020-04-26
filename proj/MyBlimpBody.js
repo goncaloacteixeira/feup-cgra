@@ -150,47 +150,50 @@ class MyBlimpBody extends CGFobject {
         this.rudder.display();
         this.scene.popMatrix();
 
-        // Flag Side 1
-        this.scene.setActiveShader(this.waveshader);
-        this.texture1.bind(1);
-        this.scene.pushMatrix();
-        this.scene.translate(0,0,-2.5);
-        this.scene.scale(1,0.5,1.3);
-        this.scene.rotate(-90*Math.PI/180.0,0,1,0);
-        this.flag.display();
-        this.scene.popMatrix();
-        this.scene.setActiveShader(this.scene.defaultShader);
+        if (this.scene.displayFlag === true) {
+            // Flag Side 1
+            this.scene.setActiveShader(this.waveshader);
+            this.texture1.bind(1);
+            this.scene.pushMatrix();
+            this.scene.translate(0,0,-2.5);
+            this.scene.scale(1,0.5,1.3);
+            this.scene.rotate(-90*Math.PI/180.0,0,1,0);
+            this.flag.display();
+            this.scene.popMatrix();
+            this.scene.setActiveShader(this.scene.defaultShader);
 
-        // Flag Side 2
-        this.scene.setActiveShader(this.waveshader);
-        this.scene.pushMatrix();
-        this.scene.translate(0,0,-2.5);
-        this.scene.scale(1,0.5,1.3);
-        this.scene.rotate(90*Math.PI/180.0,0,1,0);
-        this.flag.display();
-        this.scene.popMatrix();
-        this.scene.setActiveShader(this.scene.defaultShader);
+            // Flag Side 2
+            this.scene.setActiveShader(this.waveshader);
+            this.scene.pushMatrix();
+            this.scene.translate(0,0,-2.5);
+            this.scene.scale(1,0.5,1.3);
+            this.scene.rotate(90*Math.PI/180.0,0,1,0);
+            this.flag.display();
+            this.scene.popMatrix();
+            this.scene.setActiveShader(this.scene.defaultShader);
 
-        // String Holder 1
-        this.scene.pushMatrix();
-        this.scene.translate(0,0,-1);
-        this.scene.rotate(16*Math.PI/180.0,1,0,0);
-        this.scene.scale(0.005, 0.005, 1.8);
-        this.support.display(1);
-        this.scene.popMatrix();
+            // String Holder 1
+            this.scene.pushMatrix();
+            this.scene.translate(0, 0, -1);
+            this.scene.rotate(16 * Math.PI / 180.0, 1, 0, 0);
+            this.scene.scale(0.005, 0.005, 1.8);
+            this.support.display(1);
+            this.scene.popMatrix();
 
-        // String Holder 1
-        this.scene.pushMatrix();
-        this.scene.translate(0,0,-1);
-        this.scene.rotate(-16*Math.PI/180.0,1,0,0);
-        this.scene.scale(0.005, 0.005, 1.8);
-        this.support.display(1);
-        this.scene.popMatrix();
+            // String Holder 1
+            this.scene.pushMatrix();
+            this.scene.translate(0, 0, -1);
+            this.scene.rotate(-16 * Math.PI / 180.0, 1, 0, 0);
+            this.scene.scale(0.005, 0.005, 1.8);
+            this.support.display(1);
+            this.scene.popMatrix();
+        }
 
 
     }
 
     setFillMode() {this.primitiveType=this.scene.gl.TRIANGLES;}
+
     setLineMode() {this.primitiveType=this.scene.gl.LINE_STRIP;};
 }
 
