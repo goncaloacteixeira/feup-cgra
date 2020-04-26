@@ -24,6 +24,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'wireframe').onChange(this.scene.onWireframeChanged.bind(this.scene));
 
         this.gui.add(this.scene, 'displayVehicle').name('Display Vehicle');
+        this.gui.add(this.scene, 'displayFlag').name('Display Flag');
 
         // Slider element in GUI
         this.gui.add(this.scene, 'scaleFactor', 0.5, 3.0).name('Scale');

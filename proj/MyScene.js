@@ -12,6 +12,7 @@ class MyScene extends CGFscene {
         this.selectedTexture = 1;
         this.wireframe = false;
         this.displayVehicle = true;
+        this.displayFlag = true;
     }
 
     init(application) {
