@@ -171,15 +171,22 @@ class MyBlimpBody extends CGFobject {
         this.scene.popMatrix();
         this.scene.setActiveShader(this.scene.defaultShader);
 
-        /*
-        // String Holder
+        // String Holder 1
         this.scene.pushMatrix();
-        this.scene.translate(0.17,0.25,-1.22);
-        this.scene.rotate(13*Math.PI/180.0,0,1,0);
-        this.scene.scale(0.01, 0.01, 1.5);
+        this.scene.translate(0,0,-1);
+        this.scene.rotate(16*Math.PI/180.0,1,0,0);
+        this.scene.scale(0.005, 0.005, 1.8);
         this.support.display(1);
         this.scene.popMatrix();
-        */
+
+        // String Holder 1
+        this.scene.pushMatrix();
+        this.scene.translate(0,0,-1);
+        this.scene.rotate(-16*Math.PI/180.0,1,0,0);
+        this.scene.scale(0.005, 0.005, 1.8);
+        this.support.display(1);
+        this.scene.popMatrix();
+
 
     }
 
