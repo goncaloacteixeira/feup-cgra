@@ -202,7 +202,7 @@ class MyScene extends CGFscene {
             this.vehicle.display();
         }
         this.popMatrix();
-
+        this.Material.apply();
         this.terrain.display();
 
         for (var i=0 ; i<5; i++)
