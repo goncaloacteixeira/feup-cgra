@@ -22,7 +22,10 @@ void main() {
     vec3 offset=vec3(0.0,0.0,0.0);
 
     float height = 0.05 * sin(aVertexPosition.x * 30.0);
-    offset.z = height * sin((timeFactor * 0.003));
+    if (blimpSpeed == 0.0)
+        offset.z = height * sin((timeFactor * 0.003));
+    else
+        offset.z = height * sin( (blimpSpeed*100.0) * (timeFactor * 0.003));
 
     gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 
