@@ -113,6 +113,7 @@ class MyVehicle extends CGFobject {
         this.angle = 0;
         this.autopilot = false;
         this.autopilotAngle = 0;
+        this.scene.billboard.resetBillboard();
     }
 
     display() {

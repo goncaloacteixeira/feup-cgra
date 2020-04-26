@@ -57,7 +57,7 @@ class MyBlimpBody extends CGFobject {
         this.waveshader.setUniformsValues({blimpSpeed: blimpspeed});
     }
 
-    display(v) {
+    display(autopilot) {
         // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
         this.scene.setDiffuse(0,0,1);
 
@@ -125,20 +125,28 @@ class MyBlimpBody extends CGFobject {
         // Moving Rudder
         this.scene.pushMatrix();
         this.scene.translate(0, 0.25, -0.7);
-        if (this.scene.gui.isKeyPressed("KeyD") || v)
+        if (autopilot)
             this.scene.rotate(Math.PI / 9.0, 0, 1, 0);
-        /*if (this.scene.gui.isKeyPressed("KeyA"))*/
-        this.scene.rotate(-Math.PI / 9.0, 0, 1, 0);
+        else {
+            if (this.scene.gui.isKeyPressed("KeyD"))
+                this.scene.rotate(Math.PI / 9.0, 0, 1, 0);
+            if (this.scene.gui.isKeyPressed("KeyA"))
+                this.scene.rotate(-Math.PI / 9.0, 0, 1, 0);
+        }
         this.rudder.display();
         this.scene.popMatrix();
 
         // Moving Rudder
         this.scene.pushMatrix();
         this.scene.translate(0, -0.25, -0.7);
-        if (this.scene.gui.isKeyPressed("KeyD") || v)
+        if (autopilot)
             this.scene.rotate(Math.PI / 9.0, 0, 1, 0);
-        if (this.scene.gui.isKeyPressed("KeyA"))
-            this.scene.rotate(-Math.PI / 9.0, 0, 1, 0);
+        else {
+            if (this.scene.gui.isKeyPressed("KeyD"))
+                this.scene.rotate(Math.PI / 9.0, 0, 1, 0);
+            if (this.scene.gui.isKeyPressed("KeyA"))
+                this.scene.rotate(-Math.PI / 9.0, 0, 1, 0);
+        }
         this.rudder.display();
         this.scene.popMatrix();
 
