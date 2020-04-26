@@ -145,7 +145,6 @@ class MyBlimpBody extends CGFobject {
 
         // Flag Side 1
         this.scene.setActiveShader(this.waveshader);
-        this.texture1.bind(2);
         this.scene.pushMatrix();
         this.scene.translate(0,0,-2.5);
         this.scene.scale(1,0.5,1.3);
