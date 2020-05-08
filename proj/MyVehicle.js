@@ -72,6 +72,8 @@ class MyVehicle extends CGFobject {
         this.initGLBuffers();
     }
 
+
+
     activateAutopilot() {
         this.autopilot = true;
         this.speed = 0.1;
@@ -119,9 +121,18 @@ class MyVehicle extends CGFobject {
         this.body.waveshader.setUniformsValues({blimpSpeed: this.speed});
     }
 
+    rise(val) {
+        this.y += val;
+        if (this.y < 7.0)
+            this.y = 7.0;
+        if (this.y > 20.0)
+            this.y = 20.0;
+    }
+
     reset() {
         this.x = 0;
         this.z = 0;
+        this.y = 10;
         this.speed = 0;
         this.angle = 0;
         this.autopilot = false;
