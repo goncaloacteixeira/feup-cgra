@@ -16,11 +16,17 @@ class MyBlimpBody extends CGFobject {
         this.time = 0;
 
         this.waveshader = new CGFshader(scene.gl, 'shaders/flag.vert', 'shaders/flag.frag');
+        this.waveshader_inv = new CGFshader(scene.gl, 'shaders/flag_inv.vert', 'shaders/flag.frag');
+
         this.texture1 = new CGFtexture(this, 'images/goodyear.jpg');
         this.waveshader.setUniformsValues({uSampler1: 1})
+        this.waveshader_inv.setUniformsValues({uSampler1: 1})
+
 
         this.waveshader.setUniformsValues({blimpSpeed: 0});
+        this.waveshader_inv.setUniformsValues({blimpSpeed: 0});
         this.waveshader.setUniformsValues({timeFactor: this.time});
+        this.waveshader_inv.setUniformsValues({blimpSpeed: 0});
     }
 
     initMaterials(scene){
@@ -63,6 +69,8 @@ class MyBlimpBody extends CGFobject {
         this.time += elapsedTime;
         this.waveshader.setUniformsValues({timeFactor: this.time});
         this.waveshader.setUniformsValues({blimpSpeed: blimpspeed});
+        this.waveshader_inv.setUniformsValues({timeFactor: this.time});
+        this.waveshader_inv.setUniformsValues({blimpSpeed: blimpspeed});
     }
 
     display(autopilot) {
@@ -162,8 +170,8 @@ class MyBlimpBody extends CGFobject {
 
         if (this.scene.displayFlag === true) {
             // Flag Side 1
-            this.waveshader.setUniformsValues({uSampler1: 0})
-            this.scene.setActiveShader(this.waveshader);
+            this.waveshader_inv.setUniformsValues({uSampler1: 0})
+            this.scene.setActiveShader(this.waveshader_inv);
             this.scene.pushMatrix();
             this.texture1.bind(0);
             this.scene.translate(0,0,-2.5);
@@ -174,6 +182,7 @@ class MyBlimpBody extends CGFobject {
             this.scene.setActiveShader(this.scene.defaultShader);
 
             // Flag Side 2
+            this.waveshader.setUniformsValues({uSampler1: 0})
             this.scene.setActiveShader(this.waveshader);
             this.scene.pushMatrix();
             this.texture1.bind(0);
