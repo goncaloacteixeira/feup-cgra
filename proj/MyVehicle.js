@@ -15,6 +15,8 @@ class MyVehicle extends CGFobject {
         this.x = 0; this.y = 10; this.z = 0;
         this.autopilot = false;
         this.autopilotAngle = 0;
+        this.centerX = 0;
+        this.centerZ = 0;
     }
 
     initBuffers() {
@@ -73,7 +75,9 @@ class MyVehicle extends CGFobject {
     activateAutopilot() {
         this.autopilot = true;
         this.speed = 0.1;
-        this.autopilotAngle = 0;
+        this.autopilotAngle = (this.angle - 90.0) * Math.PI / 180.0;
+        this.centerX = this.x + Math.sin(this.autopilotAngle) * 5.0;
+        this.centerZ = this.z + Math.cos(this.autopilotAngle) * 5.0;
     }
     
     updateBuffers(complexity){
@@ -87,6 +91,15 @@ class MyVehicle extends CGFobject {
     update(elapsedTime) {
         if (this.autopilot) {
             this.autopilotAngle += 2*Math.PI*elapsedTime/5000.0;
+            let deltaAngle = 2.0*Math.PI*elapsedTime/5000.0;
+            this.angle -= deltaAngle * 180.0 / Math.PI;
+
+            this.x -= this.centerX;
+            this.z -= this.centerZ;
+            let x = this.x * Math.cos(deltaAngle) - this.z*Math.sin(deltaAngle);
+            let z = this.x * Math.sin(deltaAngle) + this.z*Math.cos(deltaAngle);
+            this.x = x + this.centerX;
+            this.z = z + this.centerZ;
         }
         else {
             this.z += 0.1 * elapsedTime * this.speed * Math.cos(this.angle*Math.PI/180.0);
@@ -120,19 +133,11 @@ class MyVehicle extends CGFobject {
         // TODO: Pôr setDiffuse tudo a 0 quando não se estiver a testar
         this.scene.pushMatrix();
 
-        this.scene.translate(this.x, this.y, this.z); // update da posição
-
-        // auto-pilot
-        if (this.autopilot) {
-            this.scene.translate(-5 * Math.cos(-this.angle * Math.PI / 180.0), 0, -5 * Math.sin(-this.angle * Math.PI / 180.0));
-            this.scene.rotate(-this.autopilotAngle, 0, 1, 0);
-            this.scene.translate(5 * Math.cos(-this.angle * Math.PI / 180.0), 0, 5 * Math.sin(-this.angle * Math.PI / 180.0));
-        }
-
-        this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);  // roda sobre si mesmo
+        this.scene.translate(this.x, this.y, this.z);           // update da posição
+        this.scene.rotate(this.angle*Math.PI/180.0, 0, 1, 0);   // roda sobre si mesmo
         this.body.display(this.autopilot);
-        this.scene.popMatrix();
 
+        this.scene.popMatrix();
     }
 
     setFillMode() {
