@@ -123,16 +123,24 @@ class MyBlimpBody extends CGFobject {
         this.body.display();
         this.scene.popMatrix();
 
-        // Static Rudder
+        // Moving Rudder
         this.scene.pushMatrix();
         this.scene.translate(0.25, 0, -0.7);
+        if (this.scene.gui.isKeyPressed("ArrowDown") || this.scene.vehicle.state === 3)
+            this.scene.rotate(Math.PI / 8.0, 1, 0, 0);
+        if (this.scene.gui.isKeyPressed("ArrowUp") || this.scene.vehicle.state === 4)
+            this.scene.rotate(-Math.PI / 8.0, 1, 0, 0);
         this.scene.rotate(90*Math.PI/180.0, 0, 0, 1);
         this.rudder.display();
         this.scene.popMatrix();
 
-        // Static Rudder
+        // Moving Rudder
         this.scene.pushMatrix();
         this.scene.translate(-0.25, 0, -0.7);
+        if (this.scene.gui.isKeyPressed("ArrowDown") || this.scene.vehicle.state === 3)
+            this.scene.rotate(Math.PI / 8.0, 1, 0, 0);
+        if (this.scene.gui.isKeyPressed("ArrowUp") || this.scene.vehicle.state === 4)
+            this.scene.rotate(-Math.PI / 8.0, 1, 0, 0);
         this.scene.rotate(90*Math.PI/180.0, 0, 0, 1);
         this.rudder.display();
         this.scene.popMatrix();

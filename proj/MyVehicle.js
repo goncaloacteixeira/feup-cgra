@@ -179,7 +179,7 @@ class MyVehicle extends CGFobject {
     }
 
     pitch(val) {
-        if (this.state !== BlimpStates.STABILIZING_UP && this.state !== BlimpStates.STABILIZING_DOWN) {
+        if (this.state !== BlimpStates.STABILIZING_UP && this.state !== BlimpStates.STABILIZING_DOWN && this.speed > 0) {
             this.pitchAngle += val;
             if (this.pitchAngle > 25.0)
                 this.pitchAngle = 25.0;
