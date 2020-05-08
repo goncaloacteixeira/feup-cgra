@@ -99,11 +99,18 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autopilot)
             this.vehicle.turn(-3);
 
-        if (this.gui.isKeyPressed("ArrowUp") && !this.vehicle.autopilot)
+        if (this.gui.isKeyPressed("PageUp") && !this.vehicle.autopilot)
             this.vehicle.rise(0.1);
 
-        if (this.gui.isKeyPressed("ArrowDown") && !this.vehicle.autopilot)
+        if (this.gui.isKeyPressed("PageDown") && !this.vehicle.autopilot)
             this.vehicle.rise(-0.1);
+
+        if (this.gui.isKeyPressed("ArrowDown") && !this.vehicle.autopilot)
+            this.vehicle.pitch(3);
+
+        if (this.gui.isKeyPressed("ArrowUp") && !this.vehicle.autopilot)
+            this.vehicle.pitch(-3);
+
 
         if (this.gui.isKeyPressed("KeyR")){
             this.vehicle.reset();
