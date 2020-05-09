@@ -99,6 +99,19 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autopilot)
             this.vehicle.turn(-3);
 
+        if (this.gui.isKeyPressed("PageUp") && !this.vehicle.autopilot)
+            this.vehicle.rise(0.1);
+
+        if (this.gui.isKeyPressed("PageDown") && !this.vehicle.autopilot)
+            this.vehicle.rise(-0.1);
+
+        if (this.gui.isKeyPressed("ArrowDown") && !this.vehicle.autopilot)
+            this.vehicle.pitch(3);
+
+        if (this.gui.isKeyPressed("ArrowUp") && !this.vehicle.autopilot)
+            this.vehicle.pitch(-3);
+
+
         if (this.gui.isKeyPressed("KeyR")){
             this.vehicle.reset();
             this.nSuppliesDelivered = 0;
@@ -197,9 +210,9 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         if (this.displayVehicle) {
-            this.translate(this.vehicle.x, 10, this.vehicle.z);
+            this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-            this.translate(-this.vehicle.x, -10, -this.vehicle.z);
+            this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
             this.vehicle.display();
         }
         this.popMatrix();

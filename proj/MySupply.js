@@ -12,7 +12,8 @@ const SupplyStates = {
 class MySupply extends CGFobject {
     constructor(scene) {
         super(scene);
-        this.y = 9;
+        this.y = this.scene.vehicle.y - 1.0;
+        this.fallingPoint = this.y;
         this.x = 0;
         this.z = 0;
         this.passedtime = 0;
@@ -41,12 +42,15 @@ class MySupply extends CGFobject {
     }
 
     update(elapsedtime) {
-        if (this.state === SupplyStates.FALLING){
+        if (this.state === SupplyStates.FALLING) {
             // Se chegou ao fim, chamar land
             this.passedtime += elapsedtime;
-            this.y = 9 - (this.passedtime * 0.0027);
+            this.y = this.fallingPoint - (this.passedtime * 0.0027);
             if (this.y <= 0.4)
                 this.land();
+        }
+        if (this.state === SupplyStates.INACTIVE) {
+            this.fallingPoint = this.scene.vehicle.y - 1.0;
         }
     }
 
