@@ -23,7 +23,7 @@ void main() {
 
 
     if (blimpSpeed == 0.0)
-        offset.z = 0.2 * sin(aVertexPosition.x + (timeFactor * 0.003)) * (aVertexPosition.x - 0.5);
+        offset.z = 0.2 * sin(-aVertexPosition.x + (timeFactor * 0.003)) * (aVertexPosition.x - 0.5);
     else
         offset.z = 0.2 * sin(aVertexPosition.x + (blimpSpeed*100.0) * (timeFactor * 0.003)) * (aVertexPosition.x - 0.5);
 
