@@ -17,6 +17,7 @@ class MyVehicle extends CGFobject {
 
         this.body = new MyBlimpBody(this.scene);
 
+        this.angletoadd = 0;
         this.angle = 0;
         this.speed = 0;
         this.propellerangle = 0;
@@ -85,7 +86,6 @@ class MyVehicle extends CGFobject {
         this.initGLBuffers();
     }
 
-
     activateAutopilot() {
         this.autopilot = true;
         this.speed = 0.1;
@@ -118,6 +118,9 @@ class MyVehicle extends CGFobject {
             this.y += 0.1 * elapsedTime * this.speed * Math.sin(this.pitchAngle*Math.PI/180.0);
         }
         else {
+            // TODO atualizar a rotação tendo em conta o tempo
+            this.angle += this.angletoadd *elapsedTime/80;
+            this.angletoadd = 0;
             this.z += 0.1 * elapsedTime * this.speed * Math.cos(this.angle*Math.PI/180.0);
             this.x += 0.1 * elapsedTime * this.speed * Math.sin(this.angle*Math.PI/180.0);
             this.y += 0.1 * elapsedTime * this.speed * Math.sin(this.pitchAngle*Math.PI/180.0);
@@ -141,7 +144,7 @@ class MyVehicle extends CGFobject {
     }
 
     turn(val) {
-        this.angle += val;
+        this.angletoadd += val;
     }
 
     accelerate(val) {
