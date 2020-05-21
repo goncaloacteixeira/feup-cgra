@@ -94,10 +94,10 @@ class MyScene extends CGFscene {
             this.vehicle.accelerate(-0.005 * this.speedFactor);
 
         if (this.gui.isKeyPressed("KeyA") && !this.vehicle.autopilot)
-            this.vehicle.turn(3);
+            this.vehicle.turn(5);
 
         if (this.gui.isKeyPressed("KeyD") && !this.vehicle.autopilot)
-            this.vehicle.turn(-3);
+            this.vehicle.turn(-5);
 
         if (this.gui.isKeyPressed("PageUp") && !this.vehicle.autopilot)
             this.vehicle.rise(0.1);
