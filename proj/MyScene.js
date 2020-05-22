@@ -83,6 +83,8 @@ class MyScene extends CGFscene {
         this.lastUpdate = 0;
         this.nSuppliesDelivered = 0;
         this.timeAfterLastSupply = Number.MAX_VALUE;
+
+        this.pressedP = 0;
     }
 
     checkKeys() {
@@ -122,8 +124,16 @@ class MyScene extends CGFscene {
             }
         }
 
-        if (this.gui.isKeyPressed("KeyP") && !this.vehicle.autopilot)
-            this.vehicle.activateAutopilot();
+        if (this.gui.isKeyPressed("KeyP")) {
+            const time = this.lastUpdate - this.pressedP;
+            if (time > 100) {
+                this.pressedP = this.lastUpdate;
+                if (!this.vehicle.autopilot)
+                    this.vehicle.activateAutopilot();
+                else
+                    this.vehicle.deactivateAutopilot();
+            }
+        }
 
         if (this.gui.isKeyPressed("KeyL")) {
             if (this.nSuppliesDelivered !== 5 && this.timeAfterLastSupply > 500) {

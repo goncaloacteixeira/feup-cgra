@@ -88,10 +88,13 @@ class MyVehicle extends CGFobject {
 
     activateAutopilot() {
         this.autopilot = true;
-        this.speed = 0.1;
         this.autopilotAngle = (this.angle - 90.0) * Math.PI / 180.0;
         this.centerX = this.x + Math.sin(this.autopilotAngle) * 5.0;
         this.centerZ = this.z + Math.cos(this.autopilotAngle) * 5.0;
+    }
+
+    deactivateAutopilot() {
+        this.autopilot = false;
     }
     
     updateBuffers(complexity){
@@ -118,7 +121,6 @@ class MyVehicle extends CGFobject {
             this.y += 0.1 * elapsedTime * this.speed * Math.sin(this.pitchAngle*Math.PI/180.0);
         }
         else {
-            // TODO atualizar a rotação tendo em conta o tempo
             this.angle += this.angletoadd *elapsedTime/80;
             this.angletoadd = 0;
             this.z += 0.1 * elapsedTime * this.speed * Math.cos(this.angle*Math.PI/180.0);
