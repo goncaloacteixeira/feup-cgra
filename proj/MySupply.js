@@ -29,7 +29,7 @@ class MySupply extends CGFobject {
         this.texture.setDiffuse(0.4, 0.4, 0.4, 1);
         this.texture.setSpecular(0.1, 0.1, 0.1, 1);
         this.texture.setShininess(10.0);
-        this.texture.loadTexture('images/supply/crate2.png');
+        this.texture.loadTexture('images/supply/crate.jpg');
         this.texture.setTextureWrap('REPEAT', 'REPEAT');
 
         this.packageTex = new CGFappearance(this.scene);
@@ -37,7 +37,7 @@ class MySupply extends CGFobject {
         this.packageTex.setDiffuse(0.4, 0.4, 0.4, 1);
         this.packageTex.setSpecular(0.1, 0.1, 0.1, 1);
         this.packageTex.setShininess(10.0);
-        this.packageTex.loadTexture('images/goodyear_yellow.jpg'); // apenas para exemplo (TODO - Melhorar)
+        this.packageTex.loadTexture('images/supply/package.jpg');
         this.packageTex.setTextureWrap('REPEAT', 'REPEAT');
     }
 
