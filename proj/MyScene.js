@@ -9,7 +9,7 @@ class MyScene extends CGFscene {
         this.appearance = null;
 
         // initial configuration of interface
-        this.selectedTexture = 1;
+        this.selectedTexture = 0;
         this.wireframe = false;
         this.displayVehicle = true;
         this.displayFlag = true;
@@ -56,18 +56,16 @@ class MyScene extends CGFscene {
 
         //------ Textures
         this.textures = [
-            new CGFtexture(this, 'images/earth.jpg'),
             new CGFtexture(this, 'images/mountain.png'),
             new CGFtexture(this, 'images/cubemap.png'),
             new CGFtexture(this, 'images/test.png'),
             new CGFtexture(this, 'images/testMap_cube.jpg')
         ];
         this.textureList = {
-            'Earth' : 0,
-            'Mountain' : 1,
-            'CubeMap' : 2,
-            'TestFaces' : 3,
-            'TestAjustes' : 4,
+            'Mountain' : 0,
+            'CloudySkies' : 1,
+            'TestFaces' : 2,
+            'TestTexture' : 3,
         };
         //-------
 
