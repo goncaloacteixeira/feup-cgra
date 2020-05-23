@@ -17,3 +17,6 @@ Observações:
 
 - no ficheiro proj-t3g01-5.png a ondulação da bandeira não parece estar presente porque implementamos uma ondulação menos "agressiva"
     do que a pedida no enunciado para parecer mais realista, o que faz com que uma imagem parada não reflita a qualidade da ondulação.
+
+- Os limites das texturas do CubeMap foram adaptados para estarem perfeitos com a textura "Mountain". Com outras texturas podem
+    aparecer vestigios de linhas brancas nas arestas do cubo.

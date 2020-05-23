@@ -105,5 +105,16 @@ class MySupply extends CGFobject {
             this.scene.popMatrix();
         }
     }
+
+    setFillMode() {
+        this.box.setFillMode();
+        this.package.setFillMode();
+    }
+
+    setLineMode()
+    {
+        this.box.setLineMode();
+        this.package.setLineMode();
+    }
 }
 

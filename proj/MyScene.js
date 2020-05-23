@@ -9,7 +9,7 @@ class MyScene extends CGFscene {
         this.appearance = null;
 
         // initial configuration of interface
-        this.selectedTexture = 1;
+        this.selectedTexture = 0;
         this.wireframe = false;
         this.displayVehicle = true;
         this.displayFlag = true;
@@ -56,18 +56,16 @@ class MyScene extends CGFscene {
 
         //------ Textures
         this.textures = [
-            new CGFtexture(this, 'images/earth.jpg'),
             new CGFtexture(this, 'images/mountain.png'),
             new CGFtexture(this, 'images/cubemap.png'),
             new CGFtexture(this, 'images/test.png'),
             new CGFtexture(this, 'images/testMap_cube.jpg')
         ];
         this.textureList = {
-            'Earth' : 0,
-            'Mountain' : 1,
-            'CubeMap' : 2,
-            'TestFaces' : 3,
-            'TestAjustes' : 4,
+            'Mountain' : 0,
+            'CloudySkies' : 1,
+            'TestFaces' : 2,
+            'TestTexture' : 3,
         };
         //-------
 
@@ -75,7 +73,6 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = false;
-        this.displayNormals = false;
         this.scaleFactor = 1;
         this.speedFactor = 1;
         //-------
@@ -169,13 +166,20 @@ class MyScene extends CGFscene {
 
     onWireframeChanged(v) {
         if (v) {
+            this.terrain.setLineMode();
             this.cubeMap.setLineMode();
             this.vehicle.setLineMode();
+            this.billboard.setLineMode();
+            for (var i=0 ; i<5; i++)
+                this.supplies[i].setLineMode();
         }
-
         else {
+            this.terrain.setFillMode();
             this.vehicle.setFillMode();
             this.cubeMap.setFillMode();
+            this.billboard.setFillMode();
+            for (var i=0 ; i<5; i++)
+                this.supplies[i].setFillMode();
         }
 
     }
@@ -239,6 +243,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.translate(0, 10, 0);
         this.cubeMap.display();
+
         this.popMatrix();
         // ---- END Primitive drawing section
     }

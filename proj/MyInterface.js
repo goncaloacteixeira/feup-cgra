@@ -20,7 +20,6 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureList).onChange(this.scene.onSelectedTextureChanged.bind(this.scene)).name('Background');
 
-        this.gui.add(this.scene, 'displayNormals').name("Display normals");
         this.gui.add(this.scene, 'wireframe').onChange(this.scene.onWireframeChanged.bind(this.scene));
 
         this.gui.add(this.scene, 'displayVehicle').name('Display Vehicle');

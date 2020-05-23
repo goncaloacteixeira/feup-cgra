@@ -75,4 +75,18 @@ class MyBillboard extends CGFobject {
         this.scene.popMatrix();
     }
 
+    setFillMode() {
+        this.board.setFillMode();
+        this.support.setFillMode();
+        this.progressbar.setFillMode();
+        this.plane.setFillMode();
+    }
+
+    setLineMode()
+    {
+        this.board.setLineMode();
+        this.support.setLineMode();
+        this.progressbar.setLineMode();
+        this.plane.setLineMode();
+    }
 }

@@ -217,9 +217,23 @@ class MyBlimpBody extends CGFobject {
 
     }
 
-    setFillMode() {this.primitiveType=this.scene.gl.TRIANGLES;}
+    setFillMode() {
+        this.body.setFillMode();
+        this.gondola.setFillMode();
+        this.rudder.setFillMode();
+        this.propeller.setFillMode();
+        this.flag.setFillMode();
+        this.support.setFillMode();
+    }
 
-    setLineMode() {this.primitiveType=this.scene.gl.LINE_STRIP;};
+    setLineMode() {
+        this.body.setLineMode();
+        this.gondola.setLineMode();
+        this.rudder.setLineMode();
+        this.propeller.setLineMode();
+        this.flag.setLineMode();
+        this.support.setLineMode();
+    }
 }
 
 
