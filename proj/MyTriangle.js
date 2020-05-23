@@ -60,5 +60,14 @@ class MyTriangle extends CGFobject {
 
         this.initGLBuffers();
     }
+
+    setLineMode()
+    {
+        this.primitiveType=this.scene.gl.LINE_STRIP;
+    };
+
+    setFillMode() {
+        this.primitiveType=this.scene.gl.TRIANGLES;
+    }
 }
 

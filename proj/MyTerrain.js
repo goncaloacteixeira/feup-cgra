@@ -29,4 +29,13 @@ class MyTerrain extends CGFobject {
         this.scene.setActiveShader(this.scene.defaultShader);
     }
 
+    setFillMode() {
+        this.plane.setFillMode();
+    }
+
+    setLineMode()
+    {
+        this.plane.setLineMode();
+
+    };
 }

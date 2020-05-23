@@ -41,4 +41,14 @@ class MyPropeller extends CGFobject {
         this.sphere.display();
         this.scene.popMatrix();
     }
+    setLineMode()
+    {
+        this.triangle.setLineMode()
+        this.sphere.setLineMode()
+    }
+
+    setFillMode() {
+        this.triangle.setFillMode()
+        this.sphere.setFillMode()
+    }
 }

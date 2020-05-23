@@ -30,8 +30,14 @@ class MyGondola extends CGFobject {
         this.scene.popMatrix();
     }
 
-    setFillMode() {this.primitiveType=this.scene.gl.TRIANGLES;}
-    setLineMode() {this.primitiveType=this.scene.gl.LINE_STRIP;};
+    setFillMode() {
+        this.body.setFillMode();
+        this.head.setFillMode();
+    }
+    setLineMode() {
+        this.body.setLineMode();
+        this.head.setLineMode();
+    }
 }
 
 

@@ -64,5 +64,14 @@ class MyQuad extends CGFobject {
 		this.texCoords = [...coords];
 		this.updateTexCoordsGLBuffers();
 	}
+
+	setFillMode() {
+		this.primitiveType=this.scene.gl.TRIANGLE_STRIP;
+	}
+
+	setLineMode()
+	{
+		this.primitiveType=this.scene.gl.LINES;
+	};
 }
 

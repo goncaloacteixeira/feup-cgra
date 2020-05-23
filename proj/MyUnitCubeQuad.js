@@ -83,5 +83,13 @@ class MyUnitCubeQuad extends CGFobject {
             this.scene.popMatrix();
         }
     }
+    setFillMode() {
+        this.face.setFillMode();
+    }
+
+    setLineMode()
+    {
+        this.face.setLineMode();
+    }
 }
 

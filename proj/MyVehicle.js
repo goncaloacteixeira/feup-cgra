@@ -231,11 +231,13 @@ class MyVehicle extends CGFobject {
     }
 
     setFillMode() {
-        this.primitiveType=this.scene.gl.TRIANGLES;
+        this.body.setFillMode();
+        //this.primitiveType=this.scene.gl.TRIANGLES;
     }
 
     setLineMode() {
-        this.primitiveType=this.scene.gl.LINE_STRIP;
+        this.body.setLineMode();
+        //this.primitiveType=this.scene.gl.LINE_STRIP;
     };
 }
 

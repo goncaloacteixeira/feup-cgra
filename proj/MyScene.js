@@ -75,7 +75,6 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = false;
-        this.displayNormals = false;
         this.scaleFactor = 1;
         this.speedFactor = 1;
         //-------
@@ -169,13 +168,20 @@ class MyScene extends CGFscene {
 
     onWireframeChanged(v) {
         if (v) {
+            this.terrain.setLineMode();
             this.cubeMap.setLineMode();
             this.vehicle.setLineMode();
+            this.billboard.setLineMode();
+            for (var i=0 ; i<5; i++)
+                this.supplies[i].setLineMode();
         }
-
         else {
+            this.terrain.setFillMode();
             this.vehicle.setFillMode();
             this.cubeMap.setFillMode();
+            this.billboard.setFillMode();
+            for (var i=0 ; i<5; i++)
+                this.supplies[i].setFillMode();
         }
 
     }
@@ -239,6 +245,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.translate(0, 10, 0);
         this.cubeMap.display();
+
         this.popMatrix();
         // ---- END Primitive drawing section
     }
