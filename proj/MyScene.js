@@ -74,7 +74,7 @@ class MyScene extends CGFscene {
         this.setUpdatePeriod(1000/60);  // 60Hz
 
         //Objects connected to MyInterface
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.displayNormals = false;
         this.scaleFactor = 1;
         this.speedFactor = 1;

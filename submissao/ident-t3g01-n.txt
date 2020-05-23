@@ -1,0 +1,19 @@
+Turma 3 - Grupo 1
+
+André Daniel Alves Gomes - 201806224
+Gonçalo André Carneiro Teixeira - 201806562
+
+Observações:
+- Todas as funcionalidades foram implementadas corretamente.
+- Adicionamos 2 funcionalidade extra relativamente À alteração da altura do dirigível:
+   * Ao premir "Pg Up" o dirigível move-se no sentido posiivo do eixo yy e move-se na direção oposta ao premir "Pg Dn";
+   * Com o dirigível em movimento, ao premir ↑ o dirigível altera o seu pitch, virando a sua parte frontal para o plano xz com y=0.
+       O oposto acontece quando se premir ↓;
+
+- Se a altura não tiver sido alterada, o Supply demora 3 a aterrar. Caso a altura tenha sido alterada isto não se verifica.
+
+- Para o dirigível fazer a rotação sobre si mesmo terá em conta o tempo entre updates, com isto, cada rotação completa sobre si
+    próprio demorará o mesmo tempo, mesmo variando a máquina que executa o programa.
+
+- no ficheiro proj-t3g01-5.png a ondulação da bandeira não parece estar presente porque implementamos uma ondulação menos "agressiva"
+    do que a pedida no enunciado para parecer mais realista, o que faz com que uma imagem parada não reflita a qualidade da ondulação.
