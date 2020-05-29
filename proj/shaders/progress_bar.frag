@@ -4,11 +4,9 @@ precision highp float;
 
 varying vec2 vTextureCoord;
 
-uniform int drops;
+uniform float edge;
 
 void main() {
-    float edge = 1.0/5.0*float(drops);
-
     if (vTextureCoord.x >= edge)
         gl_FragColor = vec4(0.1, 0.1, 0.1, 1);
     else {

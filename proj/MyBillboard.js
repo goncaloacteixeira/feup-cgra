@@ -10,7 +10,7 @@ class MyBillboard extends CGFobject {
 
         this.dropped = 0;
 
-        this.progressShader.setUniformsValues({ drops: 0 });
+        this.progressShader.setUniformsValues({ edge: 0 });
         this.plane = new MyPlane(scene, 20);
         this.initMaterials();
     }
@@ -40,7 +40,9 @@ class MyBillboard extends CGFobject {
     }
 
     updateBillboard() {
-        this.progressShader.setUniformsValues({ drops: ++this.dropped});
+        this.dropped++;
+
+        this.progressShader.setUniformsValues({ edge: 1.0/5.0*this.dropped });
     }
 
     resetBillboard() {
