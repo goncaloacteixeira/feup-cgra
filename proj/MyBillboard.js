@@ -10,7 +10,7 @@ class MyBillboard extends CGFobject {
 
         this.dropped = 0;
 
-        this.progressShader.setUniformsValues({ drops: 0 });
+        this.progressShader.setUniformsValues({ edge: 0.0 });
         this.plane = new MyPlane(scene, 20);
         this.initMaterials();
     }
@@ -29,15 +29,24 @@ class MyBillboard extends CGFobject {
         this.legs.setDiffuse(0.1, 0.1, 0.1, 1);
         this.legs.setSpecular(0.1, 0.1, 0.1, 1);
         this.legs.setShininess(10.0);
+
+        this.grey = new CGFappearance(this.scene);
+        this.grey.setAmbient(0.5, 0.5, 0.5, 1.0);
+        this.grey.setDiffuse(0.1, 0.1, 0.1, 1);
+        this.grey.setSpecular(0.1, 0.1, 0.1, 1);
+        this.grey.setShininess(5.0);
+        this.grey.loadTexture('images/billboard.jpg');
+        this.grey.setTextureWrap('REPEAT', 'REPEAT');
     }
 
     updateBillboard() {
-        this.progressShader.setUniformsValues({ drops: ++this.dropped});
+        this.dropped++;
+        this.progressShader.setUniformsValues({ edge: 1.0/5.0*this.dropped });
     }
 
     resetBillboard() {
         this.dropped = 0;
-        this.progressShader.setUniformsValues({ drops: 0 });
+        this.progressShader.setUniformsValues({ edge: 0.0 });
     }
 
     display() {
@@ -64,8 +73,9 @@ class MyBillboard extends CGFobject {
         this.support.display();
         this.scene.popMatrix();
 
-        this.scene.setActiveShader(this.progressShader);
+        this.grey.apply();
         this.scene.pushMatrix();
+        this.scene.setActiveShader(this.progressShader);
         this.scene.translate(0, -0.15, 0.01);
         this.scene.scale(1.5, 0.2, 1);
         this.progressbar.display();
